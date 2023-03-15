@@ -13,6 +13,10 @@ TOOLSDIR := $(CURDIR)/tools
 TMPDIR ?= $(CURDIR)/.tmp
 
 BUF_INSTALL_URL ?= github.com/bufbuild/buf/cmd/buf
+PROTOC_GEN_OPENAPIv2 ?= github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
+PROTOC_GEN_GO_GRPC_INSTALL_URL ?= google.golang.org/grpc/cmd/protoc-gen-go-grpc
+PROTOC_GEN_GO_INSTALL_URL ?= google.golang.org/protobuf/cmd/protoc-gen-go
+PROTOC_GEN_GRPC_GATEWAY_INSTALL_URL ?= github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway
 REVIVE_INSTALL_URL ?= github.com/mgechev/revive
 
 BUF ?= buf
@@ -23,6 +27,10 @@ REVIVE_RUN_ARGS ?= -config $(REVIVE_CONF) -formatter friendly
 
 GO_INSTALL_URLS = \
 	$(BUF_INSTALL_URL) \
+	$(PROTOC_GEN_OPENAPIv2) \
+	$(PROTOC_GEN_GO_GRPC_INSTALL_URL) \
+	$(PROTOC_GEN_GO_INSTALL_URL) \
+	$(PROTOC_GEN_GRPC_GATEWAY_INSTALL_URL) \
 	$(REVIVE_INSTALL_URL) \
 
 V = 0
