@@ -4,6 +4,8 @@ go 1.19
 
 require (
 	github.com/bufbuild/buf v1.15.1
+	github.com/google/gnostic v0.6.9
+	github.com/googleapis/gnostic-grpc v0.1.1
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.2
 	github.com/mgechev/revive v1.3.1
 	google.golang.org/grpc v1.53.0
@@ -38,8 +40,10 @@ require (
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/go-containerregistry v0.14.0 // indirect
 	github.com/google/pprof v0.0.0-20230309165930-d61513b1440d // indirect
+	github.com/googleapis/gnostic v0.5.5 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/jdxcode/netrc v0.0.0-20221124155335-4616370d1a84 // indirect
+	github.com/jhump/protoreflect v1.15.1 // indirect
 	github.com/klauspost/compress v1.16.3 // indirect
 	github.com/klauspost/pgzip v1.2.5 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
