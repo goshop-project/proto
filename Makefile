@@ -55,6 +55,7 @@ $(TMPDIR)/gen.mk: $(TOOLSDIR)/gen_mk.sh $(TMPDIR)/index Makefile ; $(info $(M) g
 include $(TMPDIR)/gen.mk
 
 fmt: ; $(info $(M) reformatting sources…)
+	$Q $(BUF) format -w
 	$Q find . -name '*.go' | xargs -r $(GOFMT) $(GOFMT_FLAGS)
 
 tidy: fmt
