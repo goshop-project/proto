@@ -1,0 +1,4 @@
+syntax = "proto3";
+package platform.v1;
+
+option go_package = "goshop.dev/proto/gen/platform";
