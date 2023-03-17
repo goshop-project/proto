@@ -2,3 +2,115 @@ syntax = "proto3";
 package auth.v1;
 
 option go_package = "goshop.dev/proto/gen/auth";
+
+import "google/api/annotations.proto";
+
+import "google/protobuf/descriptor.proto";
+
+message Token {
+  string access_token = 1;
+
+  string token_type = 2;
+
+  int64 expires_in = 3;
+
+  string refresh_token = 4;
+
+  string scope = 5;
+
+  int64 created_at = 6;
+}
+
+message CreateTokenBody {
+  GrantType grant_type = 1;
+
+  string username = 2;
+
+  string password = 3;
+
+  Scope scope = 4;
+
+  enum GrantType {
+	GRANT_TYPE_PASSWORD = 0;
+  }
+
+  enum Scope {
+    SCOPE_ADMIN = 0;
+  }
+}
+
+message ClientTokenBody {
+  GrantType grant_type = 1;
+
+  string client_id = 2;
+
+  string client_secret = 3;
+
+  enum GrantType {
+    GRANT_TYPE_CLIENT_CREDENTIALS = 0;
+  }
+}
+
+message RefreshTokenBody {
+  GrantType grant_type = 1;
+
+  string refresh_token = 2;
+
+  enum GrantType {
+    REFRESH_TOKEN = 0;
+  }
+}
+
+message CreateOrRefreshTokenRequestBody {
+  GrantType grant_type = 1;
+
+  string username = 2;
+
+  string password = 3;
+
+  Scope scope = 4;
+
+  GrantType1 grant_type_1 = 5;
+
+  string client_id = 6;
+
+  string client_secret = 7;
+
+  GrantType2 grant_type_2 = 8;
+
+  string refresh_token = 9;
+
+  enum GrantType {
+    GRANT_TYPE_PASSWORD = 0;
+  }
+
+  enum Scope {
+    ADMIN = 0;
+  }
+
+  enum GrantType1 {
+	GRANT_TYPE1_CLIENT_CREDENTIALS = 0;
+  }
+
+  enum GrantType2 {
+    GRANT_TYPE2_REFRESH_TOKEN = 0;
+  }
+}
+
+message CreateOrRefreshTokenRequestBodyapplicationXml {
+}
+
+//Create-Or-Refresh-TokenParameters holds parameters to Create-Or-Refresh-Token
+message CreateOrRefreshTokenRequest {
+  CreateOrRefreshTokenRequestBody create_or_refresh_token_request_body = 1;
+}
+
+service AuthService {
+  rpc CreateOrRefreshToken ( CreateOrRefreshTokenRequest ) returns ( CreateOrRefreshTokenResponse ) {
+    option (google.api.http) = { post:"/auth/token" body:"create_or_refresh_token_request_body"  };
+  }
+}
+
+message CreateOrRefreshTokenResponse {
+	Token token = 1;
+}

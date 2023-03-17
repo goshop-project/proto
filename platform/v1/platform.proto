@@ -2,3 +2,3891 @@ syntax = "proto3";
 package platform.v1;
 
 option go_package = "goshop.dev/proto/gen/platform";
+
+import "google/api/annotations.proto";
+
+import "google/protobuf/descriptor.proto";
+
+import "google/protobuf/empty.proto";
+
+message PublicMetadata {
+}
+
+message PrivateMetadata {
+}
+
+message Address {
+  string country_id = 1;
+
+  string state_id = 2;
+
+  string state_name = 3;
+
+  string address1 = 4;
+
+  string address2 = 5;
+
+  string city = 6;
+
+  string zipcode = 7;
+
+  string phone = 8;
+
+  string alternative_phone = 9;
+
+  string firstname = 10;
+
+  string lastname = 11;
+
+  string label = 12;
+
+  string company = 13;
+
+  string user_id = 14;
+
+  PublicMetadata public_metadata = 15;
+
+  PrivateMetadata private_metadata = 16;
+}
+
+message CreateAddressParams {
+  Address address = 1;
+}
+
+message UpdateAddressParams {
+  Address address = 1;
+}
+
+message Adjustment {
+  string order_id = 1;
+
+  string label = 2;
+
+  string adjustable_id = 3;
+
+  string adjustable_type = 4;
+
+  string source_id = 5;
+
+  string source_type = 6;
+
+  float amount = 7;
+
+  bool mandatory = 8;
+
+  bool eligible = 9;
+
+  State state = 10;
+
+  bool included = 11;
+
+  enum State {
+    CLOSED = 0;
+
+    OPEN = 1;
+  }
+}
+
+message CreateAdjustmentParams {
+  Adjustment adjustment = 1;
+}
+
+message UpdateAdjustmentParams {
+  Adjustment adjustment = 1;
+}
+
+message Classification {
+  string product_id = 1;
+
+  string taxon_id = 2;
+
+  int64 position = 3;
+}
+
+message CreateClassificationParams {
+  Classification classification = 1;
+}
+
+message UpdateClassificationParams {
+  Classification classification = 1;
+}
+
+message CmsPage {
+  string title = 1;
+
+  Type type = 2;
+
+  string meta_title = 3;
+
+  string content = 4;
+
+  string meta_description = 5;
+
+  Visible visible = 6;
+
+  string slug = 7;
+
+  string locale = 8;
+
+  enum Type {
+    SPREE_CMS_PAGES_STANDARDPAGE = 0;
+  }
+
+  enum Visible {
+    TRUE = 0;
+
+    FALSE = 1;
+  }
+}
+
+message CreateStandardCmsPageParams {
+  CmsPage cms_page = 1;
+}
+
+message CreateHomepageCmsPageParams {
+  CmsPage cms_page = 1;
+}
+
+message CreateFeatureCmsPageParams {
+  CmsPage cms_page = 1;
+}
+
+message UpdateStandardCmsPageParams {
+  CmsPage cms_page = 1;
+}
+
+message UpdateHomepageCmsPageParams {
+  CmsPage cms_page = 1;
+}
+
+message UpdateFeatureCmsPageParams {
+  CmsPage cms_page = 1;
+}
+
+message CmsSection {
+  string name = 1;
+
+  string cms_page_id = 2;
+
+  Type type = 3;
+
+  Linked_resource_type linked_resource_type = 4;
+
+  string linked_resource_id = 5;
+
+  Fit fit = 6;
+
+  int64 position = 7;
+
+  Gutters gutters = 8;
+
+  string button_text = 9;
+
+  string title = 10;
+
+  string cms_section_image_one = 11;
+
+  enum Type {
+    SPREE_CMS_SECTIONS_HEROIMAGE = 0;
+  }
+
+  enum Linked_resource_type {
+    SPREE_TAXON = 0;
+
+    SPREE_PRODUCT = 1;
+
+    SPREE_CMSPAGE = 2;
+  }
+
+  enum Fit {
+    SCREEN = 0;
+
+    CONTAINER = 1;
+  }
+
+  enum Gutters {
+    GUTTERS = 0;
+
+    NO_GUTTERS = 1;
+  }
+}
+
+message CreateHeroImageCmsSectionParams {
+  CmsSection cms_section = 1;
+}
+
+message CreateProductCarouselCmsSectionParams {
+  CmsSection cms_section = 1;
+}
+
+message CreateSideBySideImagesCmsSectionParams {
+  CmsSection cms_section = 1;
+}
+
+message CreateImageGalleryCmsSectionParams {
+  CmsSection cms_section = 1;
+}
+
+message CreateFeaturedArticleCmsSectionParams {
+  CmsSection cms_section = 1;
+}
+
+message CreateRichTextCmsSectionParams {
+  CmsSection cms_section = 1;
+}
+
+message UpdateHeroImageCmsSectionParams {
+  CmsSection cms_section = 1;
+}
+
+message UpdateProductCarouselCmsSectionParams {
+  CmsSection cms_section = 1;
+}
+
+message UpdateSideBySideImagesCmsSectionParams {
+  CmsSection cms_section = 1;
+}
+
+message UpdateImageGalleryCmsSectionParams {
+  CmsSection cms_section = 1;
+}
+
+message UpdateFeaturedArticleCmsSectionParams {
+  CmsSection cms_section = 1;
+}
+
+message UpdateRichTextCmsSectionParams {
+  CmsSection cms_section = 1;
+}
+
+message CreateDigitalParams {
+  string digital_attachment = 1;
+
+  string digital_variant_id = 2;
+}
+
+message UpdateDigitalParams {
+  string digital_attachment = 1;
+
+  string digital_variant_id = 2;
+}
+
+message DigitalLink {
+  int64 access_counter = 1;
+
+  string line_item_id = 2;
+
+  string digital_id = 3;
+}
+
+message CreateDigitalLinkParams {
+  DigitalLink digital_link = 1;
+}
+
+message UpdateDigitalLinkParams {
+  DigitalLink digital_link = 1;
+}
+
+message LineItem {
+  string order_id = 1;
+
+  string variant_id = 2;
+
+  int64 quantity = 3;
+
+  PublicMetadata public_metadata = 4;
+
+  PrivateMetadata private_metadata = 5;
+}
+
+message CreateLineItemParams {
+  LineItem line_item = 1;
+}
+
+message UpdateLineItemParams {
+  LineItem line_item = 1;
+}
+
+message Menu {
+  string name = 1;
+
+  Location location = 2;
+
+  string locale = 3;
+
+  enum Location {
+    HEADER = 0;
+
+    FOOTER = 1;
+  }
+}
+
+message CreateMenuParams {
+  Menu menu = 1;
+}
+
+message UpdateMenuParams {
+  Menu menu = 1;
+}
+
+message MenuItem {
+  string name = 1;
+
+  string code = 2;
+
+  string subtitle = 3;
+
+  string destination = 4;
+
+  int64 menu_id = 5;
+
+  bool new_window = 6;
+
+  Item_type item_type = 7;
+
+  Linked_resource_type linked_resource_type = 8;
+
+  int64 linked_resource_id = 9;
+
+  enum Item_type {
+    LINK = 0;
+
+    CONTAINER = 1;
+  }
+
+  enum Linked_resource_type {
+    URL = 0;
+
+    SPREE_TAXON = 1;
+
+    SPREE_PRODUCT = 2;
+
+    SPREE_CMSPAGE = 3;
+  }
+}
+
+message CreateMenuItemParams {
+  MenuItem menu_item = 1;
+}
+
+message UpdateMenuItemParams {
+  MenuItem menu_item = 1;
+}
+
+message MenuItemReposition {
+  MenuItem menu_item = 1;
+}
+
+message OptionType {
+  string name = 1;
+
+  string presentation = 2;
+
+  PublicMetadata public_metadata = 3;
+
+  PrivateMetadata private_metadata = 4;
+}
+
+message CreateOptionTypeParams {
+  OptionType option_type = 1;
+}
+
+message UpdateOptionTypeParams {
+  OptionType option_type = 1;
+}
+
+message OptionValue {
+  string name = 1;
+
+  string presentation = 2;
+
+  PublicMetadata public_metadata = 3;
+
+  PrivateMetadata private_metadata = 4;
+}
+
+message CreateOptionValueParams {
+  OptionValue option_value = 1;
+}
+
+message UpdateOptionValueParams {
+  OptionValue option_value = 1;
+}
+
+message Order {
+  float item_total = 1;
+
+  float total = 2;
+
+  State state = 3;
+
+  float adjustment_total = 4;
+
+  string user_id = 5;
+
+  string completed_at = 6;
+
+  string bill_address_id = 7;
+
+  string ship_address_id = 8;
+
+  float payment_total = 9;
+
+  Shipment_state shipment_state = 10;
+
+  Payment_state payment_state = 11;
+
+  string email = 12;
+
+  string special_instructions = 13;
+
+  string currency = 14;
+
+  string last_ip_address = 15;
+
+  string created_by_id = 16;
+
+  float shipment_total = 17;
+
+  float additional_tax_total = 18;
+
+  float promo_total = 19;
+
+  string channel = 20;
+
+  float included_tax_total = 21;
+
+  int64 item_count = 22;
+
+  string approver_id = 23;
+
+  string approved_at = 24;
+
+  bool confirmation_delivered = 25;
+
+  bool considered_risky = 26;
+
+  string canceled_at = 27;
+
+  string canceler_id = 28;
+
+  float taxable_adjustment_total = 29;
+
+  float non_taxable_adjustment_total = 30;
+
+  bool store_owner_notification_delivered = 31;
+
+  UpdateAddressParams bill_address_attributes = 32;
+
+  UpdateAddressParams ship_address_attributes = 33;
+
+  repeated UpdateLineItemParams line_items_attributes = 34;
+
+  PublicMetadata public_metadata = 35;
+
+  PrivateMetadata private_metadata = 36;
+
+  enum State {
+    CART = 0;
+
+    ADDRESS = 1;
+
+    DELIVERY = 2;
+
+    PAYMENT = 3;
+
+    CONFIRM = 4;
+
+    COMPLETE = 5;
+
+    CANCELED = 6;
+  }
+
+  enum Shipment_state {
+    BACKORDER = 0;
+
+    CANCELED = 1;
+
+    PARTIAL = 2;
+
+    PENDING = 3;
+
+    READY = 4;
+
+    SHIPPED = 5;
+  }
+
+  enum Payment_state {
+    BALANCE_DUE = 0;
+
+    CREDIT_OWED = 1;
+
+    FAILED = 2;
+
+    PAID = 3;
+
+    VOID = 4;
+  }
+}
+
+message CreateOrderParams {
+  Order order = 1;
+}
+
+message UpdateOrderParams {
+  Order order = 1;
+}
+
+message StoreIds {
+  string value = 1;
+}
+
+message PaymentMethod {
+  string name = 1;
+
+  bool active = 2;
+
+  bool auto_capture = 3;
+
+  string description = 4;
+
+  Type type = 5;
+
+  Display_on display_on = 6;
+
+  repeated StoreIds store_ids = 7;
+
+  PublicMetadata public_metadata = 8;
+
+  PrivateMetadata private_metadata = 9;
+
+  enum Type {
+    SPREE_GATEWAY_BOGUS = 0;
+
+    SPREE_PAYMENTMETHOD_CHECK = 1;
+  }
+
+  enum Display_on {
+    BOTH = 0;
+
+    BACK_END = 1;
+
+    FRONT_END = 2;
+  }
+}
+
+message CreatePaymentMethodParams {
+  PaymentMethod payment_method = 1;
+}
+
+message UpdatePaymentMethodParams {
+  PaymentMethod payment_method = 1;
+}
+
+message UpdatePaymentMethodParamsBogusGateway {
+  PaymentMethod payment_method = 1;
+}
+
+message Product {
+  string name = 1;
+
+  string description = 2;
+
+  string available_on = 3;
+
+  string discontinue_on = 4;
+
+  string permalink = 5;
+
+  string meta_description = 6;
+
+  string meta_keywords = 7;
+
+  string price = 8;
+
+  string sku = 9;
+
+  string deleted_at = 10;
+
+  string prototype_id = 11;
+
+  string option_values_hash = 12;
+
+  string weight = 13;
+
+  string height = 14;
+
+  string width = 15;
+
+  string depth = 16;
+
+  string shipping_category_id = 17;
+
+  string tax_category_id = 18;
+
+  string cost_currency = 19;
+
+  string cost_price = 20;
+
+  string compare_at_price = 21;
+
+  string option_type_ids = 22;
+
+  string taxon_ids = 23;
+
+  PublicMetadata public_metadata = 24;
+
+  PrivateMetadata private_metadata = 25;
+}
+
+message CreateProductParams {
+  Product product = 1;
+}
+
+message UpdateProductParams {
+  Product product = 1;
+}
+
+message Promotion {
+  string name = 1;
+
+  string code = 2;
+
+  string description = 3;
+
+  int64 usage_limit = 4;
+
+  bool advertise = 5;
+
+  string starts_at = 6;
+
+  string ends_at = 7;
+
+  repeated StoreIds store_ids = 8;
+}
+
+message CreatePromotionParams {
+  Promotion promotion = 1;
+}
+
+message UpdatePromotionParams {
+  Promotion promotion = 1;
+}
+
+message PromotionRulesAttributes {
+  Type type = 1;
+
+  int64 preferred_country_id = 2;
+
+  enum Type {
+    SPREE_PROMOTION_RULES_COUNTRY = 0;
+
+    SPREE_PROMOTION_RULES_ITEMTOTAL = 1;
+
+    SPREE_PROMOTION_RULES_PRODUCT = 2;
+
+    SPREE_PROMOTION_RULES_USER = 3;
+
+    SPREE_PROMOTION_RULES_FIRSTORDER = 4;
+
+    SPREE_PROMOTION_RULES_USERLOGGEDIN = 5;
+
+    SPREE_PROMOTION_RULES_ONEUSEPERUSER = 6;
+
+    SPREE_PROMOTION_RULES_TAXON = 7;
+
+    SPREE_PROMOTION_RULES_OPTIONVALUE = 8;
+  }
+}
+
+message UpdatePromotionAddRuleParams {
+  Promotion promotion = 1;
+}
+
+message UpdatePromotionUpdateRuleParams {
+  Promotion promotion = 1;
+}
+
+message PromotionActionsAttributes {
+  Type type = 1;
+
+  enum Type {
+    SPREE_PROMOTION_ACTIONS_CREATEADJUSTMENT = 0;
+
+    SPREE_PROMOTION_ACTIONS_CREATEITEMADJUSTMENTS = 1;
+
+    SPREE_PROMOTION_ACTIONS_FREESHIPPING = 2;
+
+    SPREE_PROMOTION_ACTIONS_CREATELINEITEMS = 3;
+  }
+}
+
+message UpdatePromotionAddActionParams {
+  Promotion promotion = 1;
+}
+
+message CalculatorAttributes {
+  string id = 1;
+
+  Type type = 2;
+
+  int64 preferred_flat_percent = 3;
+
+  enum Type {
+    SPREE_PROMOTION_ACTIONS_CREATEADJUSTMENT = 0;
+
+    SPREE_PROMOTION_ACTIONS_CREATEITEMADJUSTMENTS = 1;
+
+    SPREE_PROMOTION_ACTIONS_CREATELINEITEMS = 2;
+
+    SPREE_PROMOTION_ACTIONS_FREESHIPPING = 3;
+  }
+}
+
+message UpdatePromotionActionCalculatorParams {
+  Promotion promotion = 1;
+}
+
+message UpdatePromotionChangeCalculatorParams {
+  Promotion promotion = 1;
+}
+
+message UpdatePromotionChangeActionParams {
+  Promotion promotion = 1;
+}
+
+message PromotionAction {
+  Type type = 1;
+
+  string promotion_id = 2;
+
+  enum Type {
+    SPREE_PROMOTION_ACTIONS_CREATEADJUSTMENT = 0;
+
+    SPREE_PROMOTION_ACTIONS_CREATEITEMADJUSTMENTS = 1;
+
+    SPREE_PROMOTION_ACTIONS_CREATELINEITEMS = 2;
+
+    SPREE_PROMOTION_ACTIONS_FREESHIPPING = 3;
+  }
+}
+
+message CreatePromotionActionParams {
+  PromotionAction promotion_action = 1;
+}
+
+message UpdatePromotionActionParams {
+  PromotionAction promotion_action = 1;
+}
+
+message PromotionCategory {
+  string name = 1;
+
+  string code = 2;
+}
+
+message CreatePromotionCategoryParams {
+  PromotionCategory promotion_category = 1;
+}
+
+message UpdatePromotionCategoryParams {
+  PromotionCategory promotion_category = 1;
+}
+
+message PromotionRule {
+  string promotion_id = 1;
+
+  Type type = 2;
+
+  enum Type {
+    SPREE_PROMOTION_RULES_COUNTRY = 0;
+
+    SPREE_PROMOTION_RULES_ITEMTOTAL = 1;
+
+    SPREE_PROMOTION_RULES_PRODUCT = 2;
+
+    SPREE_PROMOTION_RULES_USER = 3;
+
+    SPREE_PROMOTION_RULES_FIRSTORDER = 4;
+
+    SPREE_PROMOTION_RULES_USERLOGGEDIN = 5;
+
+    SPREE_PROMOTION_RULES_ONEUSEPERUSER = 6;
+
+    SPREE_PROMOTION_RULES_TAXON = 7;
+
+    SPREE_PROMOTION_RULES_OPTIONVALUE = 8;
+  }
+}
+
+message CreatePromotionRuleParams {
+  PromotionRule promotion_rule = 1;
+}
+
+message UpdatePromotionRuleParams {
+  PromotionRule promotion_rule = 1;
+}
+
+message Role {
+  string name = 1;
+}
+
+message CreateRoleParams {
+  Role role = 1;
+}
+
+message UpdateRoleParams {
+  Role role = 1;
+}
+
+message Shipment {
+  string stock_location_id = 1;
+
+  string order_id = 2;
+
+  string variant_id = 3;
+
+  int64 quantity = 4;
+}
+
+message CreateShipmentParams {
+  Shipment shipment = 1;
+}
+
+message UpdateShipmentParams {
+  Shipment shipment = 1;
+}
+
+message AddItemShipmentParams {
+  Shipment shipment = 1;
+}
+
+message RemoveItemShipmentParams {
+  Shipment shipment = 1;
+}
+
+message ShippingCategory {
+  string name = 1;
+}
+
+message CreateShippingCategoryParams {
+  ShippingCategory shipping_category = 1;
+}
+
+message UpdateShippingCategoryParams {
+  ShippingCategory shipping_category = 1;
+}
+
+message ShippingCategoryIds {
+  string value = 1;
+}
+
+message ShippingMethod {
+  string name = 1;
+
+  string admin_name = 2;
+
+  string code = 3;
+
+  string tracking_url = 4;
+
+  Display_on display_on = 5;
+
+  string tax_category_id = 6;
+
+  repeated ShippingCategoryIds shipping_category_ids = 7;
+
+  ShippingCalculatorParams calculator_attributes = 8;
+
+  PublicMetadata public_metadata = 9;
+
+  PrivateMetadata private_metadata = 10;
+
+  enum Display_on {
+    BOTH = 0;
+
+    BACK_END = 1;
+
+    FRONT_END = 2;
+  }
+}
+
+message CreateShippingMethodParams {
+  ShippingMethod shipping_method = 1;
+}
+
+message UpdateShippingMethodParams {
+  ShippingMethod shipping_method = 1;
+}
+
+message ShippingCalculatorParams {
+  Type type = 1;
+
+  enum Type {
+    SPREE_CALCULATOR_SHIPPING_DIGITALDELIVERY = 0;
+
+    SPREE_CALCULATOR_SHIPPING_FLATPERCENTITEMTOTAL = 1;
+
+    SPREE_CALCULATOR_SHIPPING_FLATRATE = 2;
+
+    SPREE_CALCULATOR_SHIPPING_FLEXIRATE = 3;
+
+    SPREE_CALCULATOR_SHIPPING_PERITEM = 4;
+
+    SPREE_CALCULATOR_SHIPPING_PRICESACK = 5;
+  }
+}
+
+message StockItem {
+  string variant_id = 1;
+
+  string stock_location_id = 2;
+
+  float count_on_hand = 3;
+
+  bool backorderable = 4;
+}
+
+message CreateStockItemParams {
+  StockItem stock_item = 1;
+}
+
+message UpdateStockItemParams {
+  StockItem stock_item = 1;
+}
+
+message StockLocation {
+  string name = 1;
+
+  bool default = 2;
+
+  string address1 = 3;
+
+  string address2 = 4;
+
+  string country_id = 5;
+
+  string state_id = 6;
+
+  string city = 7;
+
+  string state_name = 8;
+
+  string zipcode = 9;
+
+  string phone = 10;
+
+  bool active = 11;
+
+  bool backorderable_default = 12;
+
+  bool propagate_all_variants = 13;
+
+  string admin_name = 14;
+}
+
+message CreateStockLocationParams {
+  StockLocation stock_location = 1;
+}
+
+message UpdateStockLocationParams {
+  StockLocation stock_location = 1;
+}
+
+message StoreCreditCategory {
+  string name = 1;
+}
+
+message CreateStoreCreditCategoryParams {
+  StoreCreditCategory store_credit_category = 1;
+}
+
+message UpdateStoreCreditCategoryParams {
+  StoreCreditCategory store_credit_category = 1;
+}
+
+message StoreCreditType {
+  string name = 1;
+
+  int64 priority = 2;
+}
+
+message CreateStoreCreditTypeParams {
+  StoreCreditType store_credit_type = 1;
+}
+
+message UpdateStoreCreditTypeParams {
+  StoreCreditType store_credit_type = 1;
+}
+
+message StoreCredit {
+  string user_id = 1;
+
+  string category_id = 2;
+
+  string created_by_id = 3;
+
+  float amount = 4;
+
+  float amount_used = 5;
+
+  string memo = 6;
+
+  string currency = 7;
+
+  float amount_authorized = 8;
+
+  string originator_id = 9;
+
+  string originator_type = 10;
+
+  string type_id = 11;
+
+  string store_id = 12;
+
+  PublicMetadata public_metadata = 13;
+
+  PrivateMetadata private_metadata = 14;
+}
+
+message CreateStoreCreditParams {
+  StoreCredit store_credit = 1;
+}
+
+message UpdateStoreCreditParams {
+  StoreCredit store_credit = 1;
+}
+
+message TaxCategory {
+  string name = 1;
+
+  bool is_default = 2;
+
+  string tax_code = 3;
+
+  string description = 4;
+}
+
+message CreateTaxCategoryParams {
+  TaxCategory tax_category = 1;
+}
+
+message UpdateTaxCategoryParams {
+  TaxCategory tax_category = 1;
+}
+
+message Preferences {
+}
+
+message TaxRate {
+  float amount = 1;
+
+  string zone_id = 2;
+
+  string tax_category_id = 3;
+
+  bool included_in_price = 4;
+
+  string name = 5;
+
+  bool show_rate_in_label = 6;
+
+  CalculatorAttributes calculator_attributes = 7;
+}
+
+message CreateTaxRateParams {
+  TaxRate tax_rate = 1;
+}
+
+message UpdateTaxRateParams {
+  TaxRate tax_rate = 1;
+}
+
+message Taxon {
+  string taxonomy_id = 1;
+
+  string parent_id = 2;
+
+  string name = 3;
+
+  PublicMetadata public_metadata = 4;
+
+  PrivateMetadata private_metadata = 5;
+}
+
+message CreateTaxonParams {
+  Taxon taxon = 1;
+}
+
+message UpdateTaxonParams {
+  Taxon taxon = 1;
+}
+
+message TaxonReposition {
+  Taxon taxon = 1;
+}
+
+message Taxonomy {
+  string name = 1;
+
+  int64 position = 2;
+
+  PublicMetadata public_metadata = 3;
+
+  PrivateMetadata private_metadata = 4;
+}
+
+message CreateTaxonomyParams {
+  Taxonomy taxonomy = 1;
+}
+
+message UpdateTaxonomyParams {
+  Taxonomy taxonomy = 1;
+}
+
+message User {
+  string email = 1;
+
+  string first_name = 2;
+
+  string last_name = 3;
+
+  string password = 4;
+
+  string password_confirmation = 5;
+
+  string selected_locale = 6;
+
+  string ship_address_id = 7;
+
+  string bill_address_id = 8;
+
+  PublicMetadata public_metadata = 9;
+
+  PrivateMetadata private_metadata = 10;
+}
+
+message CreateUserParams {
+  User user = 1;
+}
+
+message UpdateUserParams {
+  User user = 1;
+}
+
+message Subscriptions {
+  string value = 1;
+}
+
+message Subscriber {
+  bool active = 1;
+
+  repeated Subscriptions subscriptions = 2;
+
+  string url = 3;
+}
+
+message CreateWebhookSubscriberParams {
+  Subscriber subscriber = 1;
+}
+
+message UpdateWebhookSubscriberParams {
+  Subscriber subscriber = 1;
+}
+
+message Wishlist {
+  string name = 1;
+
+  string user_id = 2;
+
+  bool is_default = 3;
+
+  bool is_private = 4;
+}
+
+message CreateWishlistParams {
+  Wishlist wishlist = 1;
+}
+
+message UpdateWishlistParams {
+  Wishlist wishlist = 1;
+}
+
+message WishedItem {
+  string wishlist_id = 1;
+
+  string variant_id = 2;
+
+  int64 quantity = 3;
+}
+
+message CreateWishedItemParams {
+  WishedItem wished_item = 1;
+}
+
+message UpdateWishedItemParams {
+  WishedItem wished_item = 1;
+}
+
+message Zone {
+  string name = 1;
+
+  string description = 2;
+
+  bool default_tax = 3;
+
+  Kind kind = 4;
+
+  enum Kind {
+    STATE = 0;
+
+    COUNTRY = 1;
+  }
+}
+
+message CreateZoneParams {
+  Zone zone = 1;
+}
+
+message UpdateZoneParams {
+  Address address = 1;
+}
+
+message AmountParam {
+  float amount = 1;
+}
+
+message CouponCodeParam {
+  string coupon_code = 1;
+}
+
+message Attributes {
+}
+
+message Relationships {
+}
+
+message ResourceProperties {
+  string id = 1;
+
+  string type = 2;
+
+  Attributes attributes = 3;
+
+  Relationships relationships = 4;
+}
+
+message Data {
+  string id = 1;
+
+  string type = 2;
+
+  Attributes attributes = 3;
+
+  Relationships relationships = 4;
+}
+
+message Meta {
+  int64 count = 1;
+
+  int64 total_count = 2;
+
+  int64 total_pages = 3;
+}
+
+message Links {
+  string self = 1;
+
+  string next = 2;
+
+  string prev = 3;
+
+  string last = 4;
+
+  string first = 5;
+}
+
+message ResourcesList {
+  repeated Data data = 1;
+
+  Meta meta = 2;
+
+  Links links = 3;
+}
+
+message Resource {
+  ResourceProperties data = 1;
+}
+
+message Error {
+  string error = 1;
+}
+
+message Errors {
+}
+
+message ValidationErrors {
+  string error = 1;
+
+  Errors errors = 2;
+}
+
+//Addresses-ListParameters holds parameters to Addresses-List
+message AddressesListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_user_id_eq = 4;
+
+  string filter_firstname_cont = 5;
+}
+
+//Create-AddressParameters holds parameters to Create-Address
+message CreateAddressRequest {
+  string include = 1;
+
+  CreateAddressParams create_address_params = 2;
+}
+
+//Show-AddressParameters holds parameters to Show-Address
+message ShowAddressRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-AddressParameters holds parameters to Delete-Address
+message DeleteAddressRequest {
+  string id = 1;
+}
+
+//Update-AddressParameters holds parameters to Update-Address
+message UpdateAddressRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateAddressParams update_address_params = 3;
+}
+
+//Adjustments-ListParameters holds parameters to Adjustments-List
+message AdjustmentsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_order_id = 4;
+}
+
+//Create-AdjustmentParameters holds parameters to Create-Adjustment
+message CreateAdjustmentRequest {
+  string include = 1;
+
+  CreateAdjustmentParams create_adjustment_params = 2;
+}
+
+//Show-AdjustmentParameters holds parameters to Show-Adjustment
+message ShowAdjustmentRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-AdjustmentParameters holds parameters to Delete-Adjustment
+message DeleteAdjustmentRequest {
+  string id = 1;
+}
+
+//Update-AdjustmentParameters holds parameters to Update-Adjustment
+message UpdateAdjustmentRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateAdjustmentParams update_adjustment_params = 3;
+}
+
+//Classifications-ListParameters holds parameters to Classifications-List
+message ClassificationsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_taxon_id_eq = 4;
+}
+
+//Create-ClassificationParameters holds parameters to Create-Classification
+message CreateClassificationRequest {
+  string include = 1;
+
+  CreateClassificationParams create_classification_params = 2;
+}
+
+//Show-ClassificationParameters holds parameters to Show-Classification
+message ShowClassificationRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-ClassificationParameters holds parameters to Delete-Classification
+message DeleteClassificationRequest {
+  string id = 1;
+}
+
+//Update-ClassificationParameters holds parameters to Update-Classification
+message UpdateClassificationRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateClassificationParams update_classification_params = 3;
+}
+
+//Cms-Pages-ListParameters holds parameters to Cms-Pages-List
+message CmsPagesListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_type_eq = 4;
+
+  string filter_locale_eq = 5;
+
+  string filter_title_cont = 6;
+}
+
+message CreateCmsPageRequestBody {
+  CmsPage cms_page = 1;
+
+  CmsPage cms_page = 2;
+
+  CmsPage cms_page = 3;
+}
+
+//Create-Cms-PageParameters holds parameters to Create-Cms-Page
+message CreateCmsPageRequest {
+  string include = 1;
+
+  CreateCmsPageRequestBody create_cms_page_request_body = 2;
+}
+
+//Show-Cms-PageParameters holds parameters to Show-Cms-Page
+message ShowCmsPageRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-Cms-PageParameters holds parameters to Delete-Cms-Page
+message DeleteCmsPageRequest {
+  string id = 1;
+}
+
+message UpdateCmsPageRequestBody {
+  CmsPage cms_page = 1;
+
+  CmsPage cms_page = 2;
+
+  CmsPage cms_page = 3;
+}
+
+//Update-Cms-PageParameters holds parameters to Update-Cms-Page
+message UpdateCmsPageRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateCmsPageRequestBody update_cms_page_request_body = 3;
+}
+
+//Cms-Sections-ListParameters holds parameters to Cms-Sections-List
+message CmsSectionsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_name_eq = 4;
+}
+
+message CreateCmsSectionRequestBody {
+  CmsSection cms_section = 1;
+
+  CmsSection cms_section = 2;
+
+  CmsSection cms_section = 3;
+
+  CmsSection cms_section = 4;
+
+  CmsSection cms_section = 5;
+
+  CmsSection cms_section = 6;
+}
+
+//Create-Cms-SectionParameters holds parameters to Create-Cms-Section
+message CreateCmsSectionRequest {
+  string include = 1;
+
+  CreateCmsSectionRequestBody create_cms_section_request_body = 2;
+}
+
+//Show-Cms-SectionParameters holds parameters to Show-Cms-Section
+message ShowCmsSectionRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-Cms-SectionParameters holds parameters to Delete-Cms-Section
+message DeleteCmsSectionRequest {
+  string id = 1;
+}
+
+message UpdateCmsSectionRequestBody {
+  CmsSection cms_section = 1;
+
+  CmsSection cms_section = 2;
+
+  CmsSection cms_section = 3;
+
+  CmsSection cms_section = 4;
+
+  CmsSection cms_section = 5;
+
+  CmsSection cms_section = 6;
+}
+
+//Update-Cms-SectionParameters holds parameters to Update-Cms-Section
+message UpdateCmsSectionRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateCmsSectionRequestBody update_cms_section_request_body = 3;
+}
+
+//Show-CountryParameters holds parameters to Show-Country
+message ShowCountryRequest {
+  string id = 1;
+}
+
+//Digital-Links-ListParameters holds parameters to Digital-Links-List
+message DigitalLinksListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+}
+
+//Create-Digital-LinkParameters holds parameters to Create-Digital-Link
+message CreateDigitalLinkRequest {
+  CreateDigitalLinkParams create_digital_link_params = 1;
+}
+
+//Show-Digital-LinkParameters holds parameters to Show-Digital-Link
+message ShowDigitalLinkRequest {
+  string id = 1;
+}
+
+//Delete-Digital-LinkParameters holds parameters to Delete-Digital-Link
+message DeleteDigitalLinkRequest {
+  string id = 1;
+}
+
+//Update-Digital-LinkParameters holds parameters to Update-Digital-Link
+message UpdateDigitalLinkRequest {
+  string id = 1;
+
+  UpdateDigitalLinkParams update_digital_link_params = 2;
+}
+
+//Reset-Digital-LinkParameters holds parameters to Reset-Digital-Link
+message ResetDigitalLinkRequest {
+  string id = 1;
+}
+
+//Digitals-ListParameters holds parameters to Digitals-List
+message DigitalsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+}
+
+//Create-DigitalParameters holds parameters to Create-Digital
+message CreateDigitalRequest {
+  string include = 1;
+
+  CreateDigitalParams multipart_form_data = 2;
+}
+
+//Show-DigitalParameters holds parameters to Show-Digital
+message ShowDigitalRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-DigitalParameters holds parameters to Delete-Digital
+message DeleteDigitalRequest {
+  string id = 1;
+}
+
+//Update-DigitalParameters holds parameters to Update-Digital
+message UpdateDigitalRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateDigitalParams multipart_form_data = 3;
+}
+
+//Line-Items-ListParameters holds parameters to Line-Items-List
+message LineItemsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_order_id_eq = 4;
+}
+
+//Create-Line-ItemParameters holds parameters to Create-Line-Item
+message CreateLineItemRequest {
+  string include = 1;
+
+  CreateLineItemParams create_line_item_params = 2;
+}
+
+//Show-Line-ItemParameters holds parameters to Show-Line-Item
+message ShowLineItemRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-Line-ItemParameters holds parameters to Delete-Line-Item
+message DeleteLineItemRequest {
+  string id = 1;
+}
+
+//Update-Line-ItemParameters holds parameters to Update-Line-Item
+message UpdateLineItemRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateLineItemParams update_line_item_params = 3;
+}
+
+//Menu-Items-ListParameters holds parameters to Menu-Items-List
+message MenuItemsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_name_eq = 4;
+}
+
+//Create-Menu-ItemParameters holds parameters to Create-Menu-Item
+message CreateMenuItemRequest {
+  string include = 1;
+
+  CreateMenuItemParams create_menu_item_params = 2;
+}
+
+//Show-Menu-ItemParameters holds parameters to Show-Menu-Item
+message ShowMenuItemRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-Menu-ItemParameters holds parameters to Delete-Menu-Item
+message DeleteMenuItemRequest {
+  string id = 1;
+}
+
+//Update-Menu-ItemParameters holds parameters to Update-Menu-Item
+message UpdateMenuItemRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateMenuItemParams update_menu_item_params = 3;
+}
+
+//Reposition-Menu-ItemParameters holds parameters to Reposition-Menu-Item
+message RepositionMenuItemRequest {
+  string id = 1;
+
+  MenuItemReposition menu_item_reposition = 2;
+}
+
+//Menus-ListParameters holds parameters to Menus-List
+message MenusListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_name_eq = 4;
+
+  string filter_location_eq = 5;
+}
+
+//Create-MenuParameters holds parameters to Create-Menu
+message CreateMenuRequest {
+  string include = 1;
+
+  CreateMenuParams create_menu_params = 2;
+}
+
+//Show-MenuParameters holds parameters to Show-Menu
+message ShowMenuRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-MenuParameters holds parameters to Delete-Menu
+message DeleteMenuRequest {
+  string id = 1;
+}
+
+//Update-MenuParameters holds parameters to Update-Menu
+message UpdateMenuRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateMenuParams update_menu_params = 3;
+}
+
+//Option-Types-ListParameters holds parameters to Option-Types-List
+message OptionTypesListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string filter_option_type_id_eq = 3;
+
+  string filter_name_cont = 4;
+}
+
+//Create-Option-TypeParameters holds parameters to Create-Option-Type
+message CreateOptionTypeRequest {
+  CreateOptionTypeParams create_option_type_params = 1;
+}
+
+//Show-Option-TypeParameters holds parameters to Show-Option-Type
+message ShowOptionTypeRequest {
+  string id = 1;
+}
+
+//Delete-Option-TypeParameters holds parameters to Delete-Option-Type
+message DeleteOptionTypeRequest {
+  string id = 1;
+}
+
+//Update-Option-TypeParameters holds parameters to Update-Option-Type
+message UpdateOptionTypeRequest {
+  string id = 1;
+
+  UpdateOptionTypeParams update_option_type_params = 2;
+}
+
+//Option-Values-ListParameters holds parameters to Option-Values-List
+message OptionValuesListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_option_type_id_eq = 4;
+
+  string filter_name_cont = 5;
+}
+
+//Create-Option-ValueParameters holds parameters to Create-Option-Value
+message CreateOptionValueRequest {
+  string include = 1;
+
+  CreateOptionValueParams create_option_value_params = 2;
+}
+
+//Show-Option-ValueParameters holds parameters to Show-Option-Value
+message ShowOptionValueRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-Option-ValueParameters holds parameters to Delete-Option-Value
+message DeleteOptionValueRequest {
+  string id = 1;
+}
+
+//Update-Option-ValueParameters holds parameters to Update-Option-Value
+message UpdateOptionValueRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateOptionValueParams update_option_value_params = 3;
+}
+
+//Orders-ListParameters holds parameters to Orders-List
+message OrdersListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_state_eq = 4;
+}
+
+//Create-OrderParameters holds parameters to Create-Order
+message CreateOrderRequest {
+  string include = 1;
+
+  CreateOrderParams create_order_params = 2;
+}
+
+//Show-OrderParameters holds parameters to Show-Order
+message ShowOrderRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-OrderParameters holds parameters to Delete-Order
+message DeleteOrderRequest {
+  string id = 1;
+}
+
+//Update-OrderParameters holds parameters to Update-Order
+message UpdateOrderRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateOrderParams update_order_params = 3;
+}
+
+//Advance-OrderParameters holds parameters to Advance-Order
+message AdvanceOrderRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Next-OrderParameters holds parameters to Next-Order
+message NextOrderRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Complete-OrderParameters holds parameters to Complete-Order
+message CompleteOrderRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Empty-OrderParameters holds parameters to Empty-Order
+message EmptyOrderRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Approve-OrderParameters holds parameters to Approve-Order
+message ApproveOrderRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Cancel-OrderParameters holds parameters to Cancel-Order
+message CancelOrderRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Use-Store-Credit-OrderParameters holds parameters to Use-Store-Credit-Order
+message UseStoreCreditOrderRequest {
+  string id = 1;
+
+  string include = 2;
+
+  AmountParam amount_param = 3;
+}
+
+//Apply-Coupon-Code-OrderParameters holds parameters to Apply-Coupon-Code-Order
+message ApplyCouponCodeOrderRequest {
+  string id = 1;
+
+  string include = 2;
+
+  CouponCodeParam coupon_code_param = 3;
+}
+
+//Payment-Methods-ListParameters holds parameters to Payment-Methods-List
+message PaymentMethodsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_name = 4;
+}
+
+//Create-Payment-MethodParameters holds parameters to Create-Payment-Method
+message CreatePaymentMethodRequest {
+  string include = 1;
+
+  CreatePaymentMethodParams create_payment_method_params = 2;
+}
+
+//Show-Payment-MethodParameters holds parameters to Show-Payment-Method
+message ShowPaymentMethodRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-Payment-MethodParameters holds parameters to Delete-Payment-Method
+message DeletePaymentMethodRequest {
+  string id = 1;
+}
+
+message UpdatePaymentMethodRequestBody {
+  PaymentMethod payment_method = 1;
+
+  PaymentMethod payment_method = 2;
+}
+
+//Update-Payment-MethodParameters holds parameters to Update-Payment-Method
+message UpdatePaymentMethodRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdatePaymentMethodRequestBody update_payment_method_request_body = 3;
+}
+
+//Payments-ListParameters holds parameters to Payments-List
+message PaymentsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_payment_method_id_eq = 4;
+
+  string filter_amount_gteq = 5;
+}
+
+//Show-PaymentParameters holds parameters to Show-Payment
+message ShowPaymentRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-PaymentParameters holds parameters to Delete-Payment
+message DeletePaymentRequest {
+  string id = 1;
+}
+
+//Products-ListParameters holds parameters to Products-List
+message ProductsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_name_eq = 4;
+}
+
+//Create-ProductParameters holds parameters to Create-Product
+message CreateProductRequest {
+  string include = 1;
+
+  CreateProductParams create_product_params = 2;
+}
+
+//Show-ProductParameters holds parameters to Show-Product
+message ShowProductRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-ProductParameters holds parameters to Delete-Product
+message DeleteProductRequest {
+  string id = 1;
+}
+
+//Update-ProductParameters holds parameters to Update-Product
+message UpdateProductRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateProductParams update_product_params = 3;
+}
+
+//Promotion-Actions-ListParameters holds parameters to Promotion-Actions-List
+message PromotionActionsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_type_eq = 4;
+}
+
+//Create-Promotion-ActionParameters holds parameters to Create-Promotion-Action
+message CreatePromotionActionRequest {
+  string include = 1;
+
+  CreatePromotionActionParams create_promotion_action_params = 2;
+}
+
+//Show-Promotion-ActionParameters holds parameters to Show-Promotion-Action
+message ShowPromotionActionRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-Promotion-ActionParameters holds parameters to Delete-Promotion-Action
+message DeletePromotionActionRequest {
+  string id = 1;
+}
+
+//Update-Promotion-ActionParameters holds parameters to Update-Promotion-Action
+message UpdatePromotionActionRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdatePromotionActionParams update_promotion_action_params = 3;
+}
+
+//Promotion-Categories-ListParameters holds parameters to Promotion-Categories-List
+message PromotionCategoriesListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_code_eq = 4;
+
+  string filter_name_eq = 5;
+}
+
+//Create-Promotion-CategoryParameters holds parameters to Create-Promotion-Category
+message CreatePromotionCategoryRequest {
+  string include = 1;
+
+  CreatePromotionCategoryParams create_promotion_category_params = 2;
+}
+
+//Show-Promotion-CategoryParameters holds parameters to Show-Promotion-Category
+message ShowPromotionCategoryRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-Promotion-CategoryParameters holds parameters to Delete-Promotion-Category
+message DeletePromotionCategoryRequest {
+  string id = 1;
+}
+
+//Update-Promotion-CategoryParameters holds parameters to Update-Promotion-Category
+message UpdatePromotionCategoryRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdatePromotionCategoryParams update_promotion_category_params = 3;
+}
+
+//Promotion-Rules-ListParameters holds parameters to Promotion-Rules-List
+message PromotionRulesListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_type_eq = 4;
+}
+
+//Create-Promotion-RuleParameters holds parameters to Create-Promotion-Rule
+message CreatePromotionRuleRequest {
+  string include = 1;
+
+  CreatePromotionRuleParams create_promotion_rule_params = 2;
+}
+
+//Show-Promotion-RuleParameters holds parameters to Show-Promotion-Rule
+message ShowPromotionRuleRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-Promotion-RuleParameters holds parameters to Delete-Promotion-Rule
+message DeletePromotionRuleRequest {
+  string id = 1;
+}
+
+//Update-Promotion-RuleParameters holds parameters to Update-Promotion-Rule
+message UpdatePromotionRuleRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdatePromotionRuleParams update_promotion_rule_params = 3;
+}
+
+//Promotions-ListParameters holds parameters to Promotions-List
+message PromotionsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_code_eq = 4;
+
+  string filter_name_cont = 5;
+}
+
+//Create-PromotionParameters holds parameters to Create-Promotion
+message CreatePromotionRequest {
+  string include = 1;
+
+  CreatePromotionParams create_promotion_params = 2;
+}
+
+//Show-PromotionParameters holds parameters to Show-Promotion
+message ShowPromotionRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-PromotionParameters holds parameters to Delete-Promotion
+message DeletePromotionRequest {
+  string id = 1;
+}
+
+message UpdatePromotionRequestBody {
+  Promotion promotion = 1;
+
+  Promotion promotion = 2;
+
+  Promotion promotion = 3;
+
+  Promotion promotion = 4;
+
+  Promotion promotion = 5;
+
+  Promotion promotion = 6;
+
+  Promotion promotion = 7;
+}
+
+//Update-PromotionParameters holds parameters to Update-Promotion
+message UpdatePromotionRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdatePromotionRequestBody update_promotion_request_body = 3;
+}
+
+//Roles-ListParameters holds parameters to Roles-List
+message RolesListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string filter_name_eq = 3;
+}
+
+//Create-RoleParameters holds parameters to Create-Role
+message CreateRoleRequest {
+  CreateRoleParams create_role_params = 1;
+}
+
+//Show-RoleParameters holds parameters to Show-Role
+message ShowRoleRequest {
+  string id = 1;
+}
+
+//Delete-RoleParameters holds parameters to Delete-Role
+message DeleteRoleRequest {
+  string id = 1;
+}
+
+//Update-RoleParameters holds parameters to Update-Role
+message UpdateRoleRequest {
+  string id = 1;
+
+  UpdateRoleParams update_role_params = 2;
+}
+
+//Shipments-ListParameters holds parameters to Shipments-List
+message ShipmentsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_state_eq = 4;
+}
+
+//Create-ShipmentParameters holds parameters to Create-Shipment
+message CreateShipmentRequest {
+  string include = 1;
+
+  CreateShipmentParams create_shipment_params = 2;
+}
+
+//Show-ShipmentParameters holds parameters to Show-Shipment
+message ShowShipmentRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-ShipmentParameters holds parameters to Delete-Shipment
+message DeleteShipmentRequest {
+  string id = 1;
+}
+
+//Update-ShipmentParameters holds parameters to Update-Shipment
+message UpdateShipmentRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateShipmentParams update_shipment_params = 3;
+}
+
+//Add-Item-ShipmentParameters holds parameters to Add-Item-Shipment
+message AddItemShipmentRequest {
+  string id = 1;
+
+  string include = 2;
+
+  AddItemShipmentParams add_item_shipment_params = 3;
+}
+
+//Remove-Item-ShipmentParameters holds parameters to Remove-Item-Shipment
+message RemoveItemShipmentRequest {
+  string id = 1;
+
+  string include = 2;
+
+  RemoveItemShipmentParams remove_item_shipment_params = 3;
+}
+
+//Ready-ShipmentParameters holds parameters to Ready-Shipment
+message ReadyShipmentRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Ship-ShipmentParameters holds parameters to Ship-Shipment
+message ShipShipmentRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Cancel-ShipmentParameters holds parameters to Cancel-Shipment
+message CancelShipmentRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Resume-ShipmentParameters holds parameters to Resume-Shipment
+message ResumeShipmentRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Pend-ShipmentParameters holds parameters to Pend-Shipment
+message PendShipmentRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Shipping-Categories-ListParameters holds parameters to Shipping-Categories-List
+message ShippingCategoriesListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string filter_name_i_cont = 3;
+}
+
+//Create-Shipping-CategoryParameters holds parameters to Create-Shipping-Category
+message CreateShippingCategoryRequest {
+  CreateShippingCategoryParams create_shipping_category_params = 1;
+}
+
+//Show-Shipping-CategoryParameters holds parameters to Show-Shipping-Category
+message ShowShippingCategoryRequest {
+  string id = 1;
+}
+
+//Delete-Shipping-CategoryParameters holds parameters to Delete-Shipping-Category
+message DeleteShippingCategoryRequest {
+  string id = 1;
+}
+
+//Update-Shipping-CategoryParameters holds parameters to Update-Shipping-Category
+message UpdateShippingCategoryRequest {
+  string id = 1;
+
+  UpdateShippingCategoryParams update_shipping_category_params = 2;
+}
+
+//Shipping-Methods-ListParameters holds parameters to Shipping-Methods-List
+message ShippingMethodsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_name = 4;
+
+  string filter_title_cont = 5;
+}
+
+//Create-Shipping-MethodParameters holds parameters to Create-Shipping-Method
+message CreateShippingMethodRequest {
+  string include = 1;
+
+  CreateShippingMethodParams create_shipping_method_params = 2;
+}
+
+//Show-Shipping-MethodParameters holds parameters to Show-Shipping-Method
+message ShowShippingMethodRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-Shipping-MethodParameters holds parameters to Delete-Shipping-Method
+message DeleteShippingMethodRequest {
+  string id = 1;
+}
+
+//Update-Shipping-MethodParameters holds parameters to Update-Shipping-Method
+message UpdateShippingMethodRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateShippingMethodParams update_shipping_method_params = 3;
+}
+
+//States-ListParameters holds parameters to States-List
+message StatesListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_country_id_eq = 4;
+}
+
+//Show-StateParameters holds parameters to Show-State
+message ShowStateRequest {
+  string id = 1;
+}
+
+//Stock-Items-ListParameters holds parameters to Stock-Items-List
+message StockItemsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+}
+
+//Create-Stock-ItemParameters holds parameters to Create-Stock-Item
+message CreateStockItemRequest {
+  string include = 1;
+
+  CreateStockItemParams create_stock_item_params = 2;
+}
+
+//Show-Stock-ItemParameters holds parameters to Show-Stock-Item
+message ShowStockItemRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-Stock-ItemParameters holds parameters to Delete-Stock-Item
+message DeleteStockItemRequest {
+  string id = 1;
+}
+
+//Update-Stock-ItemParameters holds parameters to Update-Stock-Item
+message UpdateStockItemRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateStockItemParams update_stock_item_params = 3;
+}
+
+//Stock-Locations-ListParameters holds parameters to Stock-Locations-List
+message StockLocationsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+}
+
+//Create-Stock-LocationParameters holds parameters to Create-Stock-Location
+message CreateStockLocationRequest {
+  string include = 1;
+
+  CreateStockLocationParams create_stock_location_params = 2;
+}
+
+//Show-Stock-LocationParameters holds parameters to Show-Stock-Location
+message ShowStockLocationRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-Stock-LocationParameters holds parameters to Delete-Stock-Location
+message DeleteStockLocationRequest {
+  string id = 1;
+}
+
+//Update-Stock-LocationParameters holds parameters to Update-Stock-Location
+message UpdateStockLocationRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateStockLocationParams update_stock_location_params = 3;
+}
+
+//Store-Credit-Categories-ListParameters holds parameters to Store-Credit-Categories-List
+message StoreCreditCategoriesListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string filter_name_eq = 3;
+}
+
+//Create-Store-Credit-CategoryParameters holds parameters to Create-Store-Credit-Category
+message CreateStoreCreditCategoryRequest {
+  CreateStoreCreditCategoryParams create_store_credit_category_params = 1;
+}
+
+//Show-Store-Credit-CategoryParameters holds parameters to Show-Store-Credit-Category
+message ShowStoreCreditCategoryRequest {
+  string id = 1;
+}
+
+//Delete-Store-Credit-CategoryParameters holds parameters to Delete-Store-Credit-Category
+message DeleteStoreCreditCategoryRequest {
+  string id = 1;
+}
+
+//Update-Store-Credit-CategoryParameters holds parameters to Update-Store-Credit-Category
+message UpdateStoreCreditCategoryRequest {
+  string id = 1;
+
+  UpdateStoreCreditCategoryParams update_store_credit_category_params = 2;
+}
+
+//Store-Credit-Types-ListParameters holds parameters to Store-Credit-Types-List
+message StoreCreditTypesListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+}
+
+//Create-Store-Credit-TypeParameters holds parameters to Create-Store-Credit-Type
+message CreateStoreCreditTypeRequest {
+  CreateStoreCreditTypeParams create_store_credit_type_params = 1;
+}
+
+//Show-Store-Credit-TypeParameters holds parameters to Show-Store-Credit-Type
+message ShowStoreCreditTypeRequest {
+  string id = 1;
+}
+
+//Delete-Store-Credit-TypeParameters holds parameters to Delete-Store-Credit-Type
+message DeleteStoreCreditTypeRequest {
+  string id = 1;
+}
+
+//Update-Store-Credit-TypeParameters holds parameters to Update-Store-Credit-Type
+message UpdateStoreCreditTypeRequest {
+  string id = 1;
+
+  UpdateStoreCreditTypeParams update_store_credit_type_params = 2;
+}
+
+//Store-Credits-ListParameters holds parameters to Store-Credits-List
+message StoreCreditsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_user_id_eq = 4;
+
+  string filter_created_by_id_eq = 5;
+
+  string filter_amount_gteq = 6;
+
+  string filter_currency_eq = 7;
+}
+
+//Create-Store-CreditParameters holds parameters to Create-Store-Credit
+message CreateStoreCreditRequest {
+  string include = 1;
+
+  CreateStoreCreditParams create_store_credit_params = 2;
+}
+
+//Show-Store-CreditParameters holds parameters to Show-Store-Credit
+message ShowStoreCreditRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-Store-CreditParameters holds parameters to Delete-Store-Credit
+message DeleteStoreCreditRequest {
+  string id = 1;
+}
+
+//Update-Store-CreditParameters holds parameters to Update-Store-Credit
+message UpdateStoreCreditRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateStoreCreditParams update_store_credit_params = 3;
+}
+
+//Tax-Categories-ListParameters holds parameters to Tax-Categories-List
+message TaxCategoriesListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_name_eq = 4;
+
+  string filter_is_default_true = 5;
+
+  string filter_tax_code_eq = 6;
+}
+
+//Create-Tax-CategoryParameters holds parameters to Create-Tax-Category
+message CreateTaxCategoryRequest {
+  string include = 1;
+
+  CreateTaxCategoryParams create_tax_category_params = 2;
+}
+
+//Show-Tax-CategoryParameters holds parameters to Show-Tax-Category
+message ShowTaxCategoryRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-Tax-CategoryParameters holds parameters to Delete-Tax-Category
+message DeleteTaxCategoryRequest {
+  string id = 1;
+}
+
+//Update-Tax-CategoryParameters holds parameters to Update-Tax-Category
+message UpdateTaxCategoryRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateTaxCategoryParams update_tax_category_params = 3;
+}
+
+//Tax-Rates-ListParameters holds parameters to Tax-Rates-List
+message TaxRatesListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_zone_id_eq = 4;
+
+  string filter_amount_gt = 5;
+
+  string filter_tax_category_id_eq = 6;
+}
+
+//Create-Tax-RateParameters holds parameters to Create-Tax-Rate
+message CreateTaxRateRequest {
+  string include = 1;
+
+  CreateTaxRateParams create_tax_rate_params = 2;
+}
+
+//Show-Tax-RateParameters holds parameters to Show-Tax-Rate
+message ShowTaxRateRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-Tax-RateParameters holds parameters to Delete-Tax-Rate
+message DeleteTaxRateRequest {
+  string id = 1;
+}
+
+//Update-Tax-RateParameters holds parameters to Update-Tax-Rate
+message UpdateTaxRateRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateTaxRateParams update_tax_rate_params = 3;
+}
+
+//Taxonomies-ListParameters holds parameters to Taxonomies-List
+message TaxonomiesListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_name_eq = 4;
+}
+
+//Create-TaxonomyParameters holds parameters to Create-Taxonomy
+message CreateTaxonomyRequest {
+  string include = 1;
+
+  CreateTaxonomyParams create_taxonomy_params = 2;
+}
+
+//Show-TaxonomyParameters holds parameters to Show-Taxonomy
+message ShowTaxonomyRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-TaxonomyParameters holds parameters to Delete-Taxonomy
+message DeleteTaxonomyRequest {
+  string id = 1;
+}
+
+//Update-TaxonomyParameters holds parameters to Update-Taxonomy
+message UpdateTaxonomyRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateTaxonomyParams update_taxonomy_params = 3;
+}
+
+//Taxons-ListParameters holds parameters to Taxons-List
+message TaxonsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_taxonomy_id_eq = 4;
+
+  string filter_name_cont = 5;
+}
+
+//Create-TaxonParameters holds parameters to Create-Taxon
+message CreateTaxonRequest {
+  string include = 1;
+
+  CreateTaxonParams create_taxon_params = 2;
+}
+
+//Show-TaxonParameters holds parameters to Show-Taxon
+message ShowTaxonRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-TaxonParameters holds parameters to Delete-Taxon
+message DeleteTaxonRequest {
+  string id = 1;
+}
+
+//Update-TaxonParameters holds parameters to Update-Taxon
+message UpdateTaxonRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateTaxonParams update_taxon_params = 3;
+}
+
+//Reposition-TaxonParameters holds parameters to Reposition-Taxon
+message RepositionTaxonRequest {
+  string id = 1;
+
+  TaxonReposition taxon_reposition = 2;
+}
+
+//Users-ListParameters holds parameters to Users-List
+message UsersListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_user_id_eq = 4;
+
+  string filter_email_cont = 5;
+}
+
+//Create-UserParameters holds parameters to Create-User
+message CreateUserRequest {
+  string include = 1;
+
+  CreateUserParams create_user_params = 2;
+}
+
+//Show-UserParameters holds parameters to Show-User
+message ShowUserRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-UserParameters holds parameters to Delete-User
+message DeleteUserRequest {
+  string id = 1;
+}
+
+//Update-UserParameters holds parameters to Update-User
+message UpdateUserRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateUserParams update_user_params = 3;
+}
+
+//Variants-ListParameters holds parameters to Variants-List
+message VariantsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_product_id_eq = 4;
+
+  string filter_sku_i_cont = 5;
+}
+
+//Show-VariantParameters holds parameters to Show-Variant
+message ShowVariantRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-VariantParameters holds parameters to Delete-Variant
+message DeleteVariantRequest {
+  string id = 1;
+}
+
+//Webhook-Events-ListParameters holds parameters to Webhook-Events-List
+message WebhookEventsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_name_eq = 4;
+
+  string filter_request_errors_cont = 5;
+
+  string filter_response_code_eq = 6;
+
+  string filter_success_eq = 7;
+
+  string filter_url_cont = 8;
+}
+
+//Webhook-Subscribers-ListParameters holds parameters to Webhook-Subscribers-List
+message WebhookSubscribersListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string filter_active_eq = 3;
+
+  string filter_url_cont = 4;
+}
+
+//Create-Webhook-SubscriberParameters holds parameters to Create-Webhook-Subscriber
+message CreateWebhookSubscriberRequest {
+  CreateWebhookSubscriberParams create_webhook_subscriber_params = 1;
+}
+
+//Show-Webhook-SubscriberParameters holds parameters to Show-Webhook-Subscriber
+message ShowWebhookSubscriberRequest {
+  string id = 1;
+}
+
+//Delete-Webhook-SubscriberParameters holds parameters to Delete-Webhook-Subscriber
+message DeleteWebhookSubscriberRequest {
+  string id = 1;
+}
+
+//Update-Webhook-SubscriberParameters holds parameters to Update-Webhook-Subscriber
+message UpdateWebhookSubscriberRequest {
+  string id = 1;
+
+  UpdateWebhookSubscriberParams update_webhook_subscriber_params = 2;
+}
+
+//Wished-Items-ListParameters holds parameters to Wished-Items-List
+message WishedItemsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+}
+
+//Create-Wished-ItemParameters holds parameters to Create-Wished-Item
+message CreateWishedItemRequest {
+  string include = 1;
+
+  CreateWishedItemParams create_wished_item_params = 2;
+}
+
+//Show-Wished-ItemParameters holds parameters to Show-Wished-Item
+message ShowWishedItemRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-Wished-ItemParameters holds parameters to Delete-Wished-Item
+message DeleteWishedItemRequest {
+  string id = 1;
+}
+
+//Update-Wished-ItemParameters holds parameters to Update-Wished-Item
+message UpdateWishedItemRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateWishedItemParams update_wished_item_params = 3;
+}
+
+//Wishlists-ListParameters holds parameters to Wishlists-List
+message WishlistsListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_name_cont = 4;
+}
+
+//Create-WishlistParameters holds parameters to Create-Wishlist
+message CreateWishlistRequest {
+  string include = 1;
+
+  CreateWishlistParams create_wishlist_params = 2;
+}
+
+//Show-WishlistParameters holds parameters to Show-Wishlist
+message ShowWishlistRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-WishlistParameters holds parameters to Delete-Wishlist
+message DeleteWishlistRequest {
+  string id = 1;
+}
+
+//Update-WishlistParameters holds parameters to Update-Wishlist
+message UpdateWishlistRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateWishlistParams update_wishlist_params = 3;
+}
+
+//Zones-ListParameters holds parameters to Zones-List
+message ZonesListRequest {
+  int64 page = 1;
+
+  int64 per_page = 2;
+
+  string include = 3;
+
+  string filter_description_eq = 4;
+}
+
+//Create-ZoneParameters holds parameters to Create-Zone
+message CreateZoneRequest {
+  string include = 1;
+
+  CreateZoneParams create_zone_params = 2;
+}
+
+//Show-ZoneParameters holds parameters to Show-Zone
+message ShowZoneRequest {
+  string id = 1;
+
+  string include = 2;
+}
+
+//Delete-ZoneParameters holds parameters to Delete-Zone
+message DeleteZoneRequest {
+  string id = 1;
+}
+
+//Update-ZoneParameters holds parameters to Update-Zone
+message UpdateZoneRequest {
+  string id = 1;
+
+  string include = 2;
+
+  UpdateZoneParams update_zone_params = 3;
+}
+
+service PlatformService {
+  rpc AddressesList ( AddressesListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/addresses"  };
+  }
+
+  rpc CreateAddress ( CreateAddressRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/addresses" body:"create_address_params"  };
+  }
+
+  rpc ShowAddress ( ShowAddressRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/addresses/{id}"  };
+  }
+
+  rpc DeleteAddress ( DeleteAddressRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/addresses/{id}"  };
+  }
+
+  rpc UpdateAddress ( UpdateAddressRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/addresses/{id}" body:"update_address_params"  };
+  }
+
+  rpc AdjustmentsList ( AdjustmentsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/adjustments"  };
+  }
+
+  rpc CreateAdjustment ( CreateAdjustmentRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/adjustments" body:"create_adjustment_params"  };
+  }
+
+  rpc ShowAdjustment ( ShowAdjustmentRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/adjustments/{id}"  };
+  }
+
+  rpc DeleteAdjustment ( DeleteAdjustmentRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/adjustments/{id}"  };
+  }
+
+  rpc UpdateAdjustment ( UpdateAdjustmentRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/adjustments/{id}" body:"update_adjustment_params"  };
+  }
+
+  rpc ClassificationsList ( ClassificationsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/classifications"  };
+  }
+
+  rpc CreateClassification ( CreateClassificationRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/classifications" body:"create_classification_params"  };
+  }
+
+  rpc ShowClassification ( ShowClassificationRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/classifications/{id}"  };
+  }
+
+  rpc DeleteClassification ( DeleteClassificationRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/classifications/{id}"  };
+  }
+
+  rpc UpdateClassification ( UpdateClassificationRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/classifications/{id}" body:"update_classification_params"  };
+  }
+
+  rpc CmsPagesList ( CmsPagesListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/cms_pages"  };
+  }
+
+  rpc CreateCmsPage ( CreateCmsPageRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/cms_pages" body:"create_cms_page_request_body"  };
+  }
+
+  rpc ShowCmsPage ( ShowCmsPageRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/cms_pages/{id}"  };
+  }
+
+  rpc DeleteCmsPage ( DeleteCmsPageRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/cms_pages/{id}"  };
+  }
+
+  rpc UpdateCmsPage ( UpdateCmsPageRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/cms_pages/{id}" body:"update_cms_page_request_body"  };
+  }
+
+  rpc CmsSectionsList ( CmsSectionsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/cms_sections"  };
+  }
+
+  rpc CreateCmsSection ( CreateCmsSectionRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/cms_sections" body:"create_cms_section_request_body"  };
+  }
+
+  rpc ShowCmsSection ( ShowCmsSectionRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/cms_sections/{id}"  };
+  }
+
+  rpc DeleteCmsSection ( DeleteCmsSectionRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/cms_sections/{id}"  };
+  }
+
+  rpc UpdateCmsSection ( UpdateCmsSectionRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/cms_sections/{id}" body:"update_cms_section_request_body"  };
+  }
+
+  rpc CountriesList ( google.protobuf.Empty ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/countries"  };
+  }
+
+  rpc ShowCountry ( ShowCountryRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/countries/{id}"  };
+  }
+
+  rpc DigitalLinksList ( DigitalLinksListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/digital_links"  };
+  }
+
+  rpc CreateDigitalLink ( CreateDigitalLinkRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/digital_links" body:"create_digital_link_params"  };
+  }
+
+  rpc ShowDigitalLink ( ShowDigitalLinkRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/digital_links/{id}"  };
+  }
+
+  rpc DeleteDigitalLink ( DeleteDigitalLinkRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/digital_links/{id}"  };
+  }
+
+  rpc UpdateDigitalLink ( UpdateDigitalLinkRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/digital_links/{id}" body:"update_digital_link_params"  };
+  }
+
+  rpc ResetDigitalLink ( ResetDigitalLinkRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/digital_links/{id}/reset"  };
+  }
+
+  rpc DigitalsList ( DigitalsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/digitals"  };
+  }
+
+  rpc CreateDigital ( CreateDigitalRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/digitals" body:"multipart_form_data"  };
+  }
+
+  rpc ShowDigital ( ShowDigitalRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/digitals/{id}"  };
+  }
+
+  rpc DeleteDigital ( DeleteDigitalRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/digitals/{id}"  };
+  }
+
+  rpc UpdateDigital ( UpdateDigitalRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/digitals/{id}" body:"multipart_form_data"  };
+  }
+
+  rpc LineItemsList ( LineItemsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/line_items"  };
+  }
+
+  rpc CreateLineItem ( CreateLineItemRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/line_items" body:"create_line_item_params"  };
+  }
+
+  rpc ShowLineItem ( ShowLineItemRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/line_items/{id}"  };
+  }
+
+  rpc DeleteLineItem ( DeleteLineItemRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/line_items/{id}"  };
+  }
+
+  rpc UpdateLineItem ( UpdateLineItemRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/line_items/{id}" body:"update_line_item_params"  };
+  }
+
+  rpc MenuItemsList ( MenuItemsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/menu_items"  };
+  }
+
+  rpc CreateMenuItem ( CreateMenuItemRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/menu_items" body:"create_menu_item_params"  };
+  }
+
+  rpc ShowMenuItem ( ShowMenuItemRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/menu_items/{id}"  };
+  }
+
+  rpc DeleteMenuItem ( DeleteMenuItemRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/menu_items/{id}"  };
+  }
+
+  rpc UpdateMenuItem ( UpdateMenuItemRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/menu_items/{id}" body:"update_menu_item_params"  };
+  }
+
+  rpc RepositionMenuItem ( RepositionMenuItemRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/menu_items/{id}/reposition" body:"menu_item_reposition"  };
+  }
+
+  rpc MenusList ( MenusListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/menus"  };
+  }
+
+  rpc CreateMenu ( CreateMenuRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/menus" body:"create_menu_params"  };
+  }
+
+  rpc ShowMenu ( ShowMenuRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/menus/{id}"  };
+  }
+
+  rpc DeleteMenu ( DeleteMenuRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/menus/{id}"  };
+  }
+
+  rpc UpdateMenu ( UpdateMenuRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/menus/{id}" body:"update_menu_params"  };
+  }
+
+  rpc OptionTypesList ( OptionTypesListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/option_types"  };
+  }
+
+  rpc CreateOptionType ( CreateOptionTypeRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/option_types" body:"create_option_type_params"  };
+  }
+
+  rpc ShowOptionType ( ShowOptionTypeRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/option_types/{id}"  };
+  }
+
+  rpc DeleteOptionType ( DeleteOptionTypeRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/option_types/{id}"  };
+  }
+
+  rpc UpdateOptionType ( UpdateOptionTypeRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/option_types/{id}" body:"update_option_type_params"  };
+  }
+
+  rpc OptionValuesList ( OptionValuesListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/option_values"  };
+  }
+
+  rpc CreateOptionValue ( CreateOptionValueRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/option_values" body:"create_option_value_params"  };
+  }
+
+  rpc ShowOptionValue ( ShowOptionValueRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/option_values/{id}"  };
+  }
+
+  rpc DeleteOptionValue ( DeleteOptionValueRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/option_values/{id}"  };
+  }
+
+  rpc UpdateOptionValue ( UpdateOptionValueRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/option_values/{id}" body:"update_option_value_params"  };
+  }
+
+  rpc OrdersList ( OrdersListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/orders"  };
+  }
+
+  rpc CreateOrder ( CreateOrderRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/orders" body:"create_order_params"  };
+  }
+
+  rpc ShowOrder ( ShowOrderRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/orders/{id}"  };
+  }
+
+  rpc DeleteOrder ( DeleteOrderRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/orders/{id}"  };
+  }
+
+  rpc UpdateOrder ( UpdateOrderRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/orders/{id}" body:"update_order_params"  };
+  }
+
+  rpc AdvanceOrder ( AdvanceOrderRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/orders/{id}/advance"  };
+  }
+
+  rpc NextOrder ( NextOrderRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/orders/{id}/next"  };
+  }
+
+  rpc CompleteOrder ( CompleteOrderRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/orders/{id}/complete"  };
+  }
+
+  rpc EmptyOrder ( EmptyOrderRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/orders/{id}/empty"  };
+  }
+
+  rpc ApproveOrder ( ApproveOrderRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/orders/{id}/approve"  };
+  }
+
+  rpc CancelOrder ( CancelOrderRequest ) returns ( Error ) {
+    option (google.api.http) = { patch:"/api/v2/platform/orders/{id}/cancel"  };
+  }
+
+  rpc UseStoreCreditOrder ( UseStoreCreditOrderRequest ) returns ( Error ) {
+    option (google.api.http) = { patch:"/api/v2/platform/orders/{id}/use_store_credit" body:"amount_param"  };
+  }
+
+  rpc ApplyCouponCodeOrder ( ApplyCouponCodeOrderRequest ) returns ( Error ) {
+    option (google.api.http) = { patch:"/api/v2/platform/orders/{id}/apply_coupon_code" body:"coupon_code_param"  };
+  }
+
+  rpc PaymentMethodsList ( PaymentMethodsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/payment_methods"  };
+  }
+
+  rpc CreatePaymentMethod ( CreatePaymentMethodRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/payment_methods" body:"create_payment_method_params"  };
+  }
+
+  rpc ShowPaymentMethod ( ShowPaymentMethodRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/payment_methods/{id}"  };
+  }
+
+  rpc DeletePaymentMethod ( DeletePaymentMethodRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/payment_methods/{id}"  };
+  }
+
+  rpc UpdatePaymentMethod ( UpdatePaymentMethodRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/payment_methods/{id}" body:"update_payment_method_request_body"  };
+  }
+
+  rpc PaymentsList ( PaymentsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/payments"  };
+  }
+
+  rpc ShowPayment ( ShowPaymentRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/payments/{id}"  };
+  }
+
+  rpc DeletePayment ( DeletePaymentRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/payments/{id}"  };
+  }
+
+  rpc ProductsList ( ProductsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/products"  };
+  }
+
+  rpc CreateProduct ( CreateProductRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/products" body:"create_product_params"  };
+  }
+
+  rpc ShowProduct ( ShowProductRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/products/{id}"  };
+  }
+
+  rpc DeleteProduct ( DeleteProductRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/products/{id}"  };
+  }
+
+  rpc UpdateProduct ( UpdateProductRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/products/{id}" body:"update_product_params"  };
+  }
+
+  rpc PromotionActionsList ( PromotionActionsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/promotion_actions"  };
+  }
+
+  rpc CreatePromotionAction ( CreatePromotionActionRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/promotion_actions" body:"create_promotion_action_params"  };
+  }
+
+  rpc ShowPromotionAction ( ShowPromotionActionRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/promotion_actions/{id}"  };
+  }
+
+  rpc DeletePromotionAction ( DeletePromotionActionRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/promotion_actions/{id}"  };
+  }
+
+  rpc UpdatePromotionAction ( UpdatePromotionActionRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/promotion_actions/{id}" body:"update_promotion_action_params"  };
+  }
+
+  rpc PromotionCategoriesList ( PromotionCategoriesListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/promotion_categories"  };
+  }
+
+  rpc CreatePromotionCategory ( CreatePromotionCategoryRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/promotion_categories" body:"create_promotion_category_params"  };
+  }
+
+  rpc ShowPromotionCategory ( ShowPromotionCategoryRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/promotion_categories/{id}"  };
+  }
+
+  rpc DeletePromotionCategory ( DeletePromotionCategoryRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/promotion_categories/{id}"  };
+  }
+
+  rpc UpdatePromotionCategory ( UpdatePromotionCategoryRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/promotion_categories/{id}" body:"update_promotion_category_params"  };
+  }
+
+  rpc PromotionRulesList ( PromotionRulesListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/promotion_rules"  };
+  }
+
+  rpc CreatePromotionRule ( CreatePromotionRuleRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/promotion_rules" body:"create_promotion_rule_params"  };
+  }
+
+  rpc ShowPromotionRule ( ShowPromotionRuleRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/promotion_rules/{id}"  };
+  }
+
+  rpc DeletePromotionRule ( DeletePromotionRuleRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/promotion_rules/{id}"  };
+  }
+
+  rpc UpdatePromotionRule ( UpdatePromotionRuleRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/promotion_rules/{id}" body:"update_promotion_rule_params"  };
+  }
+
+  rpc PromotionsList ( PromotionsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/promotions"  };
+  }
+
+  rpc CreatePromotion ( CreatePromotionRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/promotions" body:"create_promotion_params"  };
+  }
+
+  rpc ShowPromotion ( ShowPromotionRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/promotions/{id}"  };
+  }
+
+  rpc DeletePromotion ( DeletePromotionRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/promotions/{id}"  };
+  }
+
+  rpc UpdatePromotion ( UpdatePromotionRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/promotions/{id}" body:"update_promotion_request_body"  };
+  }
+
+  rpc RolesList ( RolesListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/roles"  };
+  }
+
+  rpc CreateRole ( CreateRoleRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/roles" body:"create_role_params"  };
+  }
+
+  rpc ShowRole ( ShowRoleRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/roles/{id}"  };
+  }
+
+  rpc DeleteRole ( DeleteRoleRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/roles/{id}"  };
+  }
+
+  rpc UpdateRole ( UpdateRoleRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/roles/{id}" body:"update_role_params"  };
+  }
+
+  rpc ShipmentsList ( ShipmentsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/shipments"  };
+  }
+
+  rpc CreateShipment ( CreateShipmentRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/shipments" body:"create_shipment_params"  };
+  }
+
+  rpc ShowShipment ( ShowShipmentRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/shipments/{id}"  };
+  }
+
+  rpc DeleteShipment ( DeleteShipmentRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/shipments/{id}"  };
+  }
+
+  rpc UpdateShipment ( UpdateShipmentRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/shipments/{id}" body:"update_shipment_params"  };
+  }
+
+  rpc AddItemShipment ( AddItemShipmentRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/shipments/{id}/add_item" body:"add_item_shipment_params"  };
+  }
+
+  rpc RemoveItemShipment ( RemoveItemShipmentRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/shipments/{id}/remove_item" body:"remove_item_shipment_params"  };
+  }
+
+  rpc ReadyShipment ( ReadyShipmentRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/shipments/{id}/ready"  };
+  }
+
+  rpc ShipShipment ( ShipShipmentRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/shipments/{id}/ship"  };
+  }
+
+  rpc CancelShipment ( CancelShipmentRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/shipments/{id}/cancel"  };
+  }
+
+  rpc ResumeShipment ( ResumeShipmentRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/shipments/{id}/resume"  };
+  }
+
+  rpc PendShipment ( PendShipmentRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/shipments/{id}/pend"  };
+  }
+
+  rpc ShippingCategoriesList ( ShippingCategoriesListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/shipping_categories"  };
+  }
+
+  rpc CreateShippingCategory ( CreateShippingCategoryRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/shipping_categories" body:"create_shipping_category_params"  };
+  }
+
+  rpc ShowShippingCategory ( ShowShippingCategoryRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/shipping_categories/{id}"  };
+  }
+
+  rpc DeleteShippingCategory ( DeleteShippingCategoryRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/shipping_categories/{id}"  };
+  }
+
+  rpc UpdateShippingCategory ( UpdateShippingCategoryRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/shipping_categories/{id}" body:"update_shipping_category_params"  };
+  }
+
+  rpc ShippingMethodsList ( ShippingMethodsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/shipping_methods"  };
+  }
+
+  rpc CreateShippingMethod ( CreateShippingMethodRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/shipping_methods" body:"create_shipping_method_params"  };
+  }
+
+  rpc ShowShippingMethod ( ShowShippingMethodRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/shipping_methods/{id}"  };
+  }
+
+  rpc DeleteShippingMethod ( DeleteShippingMethodRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/shipping_methods/{id}"  };
+  }
+
+  rpc UpdateShippingMethod ( UpdateShippingMethodRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/shipping_methods/{id}" body:"update_shipping_method_params"  };
+  }
+
+  rpc StatesList ( StatesListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/states"  };
+  }
+
+  rpc ShowState ( ShowStateRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/states/{id}"  };
+  }
+
+  rpc StockItemsList ( StockItemsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/stock_items"  };
+  }
+
+  rpc CreateStockItem ( CreateStockItemRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/stock_items" body:"create_stock_item_params"  };
+  }
+
+  rpc ShowStockItem ( ShowStockItemRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/stock_items/{id}"  };
+  }
+
+  rpc DeleteStockItem ( DeleteStockItemRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/stock_items/{id}"  };
+  }
+
+  rpc UpdateStockItem ( UpdateStockItemRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/stock_items/{id}" body:"update_stock_item_params"  };
+  }
+
+  rpc StockLocationsList ( StockLocationsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/stock_locations"  };
+  }
+
+  rpc CreateStockLocation ( CreateStockLocationRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/stock_locations" body:"create_stock_location_params"  };
+  }
+
+  rpc ShowStockLocation ( ShowStockLocationRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/stock_locations/{id}"  };
+  }
+
+  rpc DeleteStockLocation ( DeleteStockLocationRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/stock_locations/{id}"  };
+  }
+
+  rpc UpdateStockLocation ( UpdateStockLocationRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/stock_locations/{id}" body:"update_stock_location_params"  };
+  }
+
+  rpc StoreCreditCategoriesList ( StoreCreditCategoriesListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/store_credit_categories"  };
+  }
+
+  rpc CreateStoreCreditCategory ( CreateStoreCreditCategoryRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/store_credit_categories" body:"create_store_credit_category_params"  };
+  }
+
+  rpc ShowStoreCreditCategory ( ShowStoreCreditCategoryRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/store_credit_categories/{id}"  };
+  }
+
+  rpc DeleteStoreCreditCategory ( DeleteStoreCreditCategoryRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/store_credit_categories/{id}"  };
+  }
+
+  rpc UpdateStoreCreditCategory ( UpdateStoreCreditCategoryRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/store_credit_categories/{id}" body:"update_store_credit_category_params"  };
+  }
+
+  rpc StoreCreditTypesList ( StoreCreditTypesListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/store_credit_types"  };
+  }
+
+  rpc CreateStoreCreditType ( CreateStoreCreditTypeRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/store_credit_types" body:"create_store_credit_type_params"  };
+  }
+
+  rpc ShowStoreCreditType ( ShowStoreCreditTypeRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/store_credit_types/{id}"  };
+  }
+
+  rpc DeleteStoreCreditType ( DeleteStoreCreditTypeRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/store_credit_types/{id}"  };
+  }
+
+  rpc UpdateStoreCreditType ( UpdateStoreCreditTypeRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/store_credit_types/{id}" body:"update_store_credit_type_params"  };
+  }
+
+  rpc StoreCreditsList ( StoreCreditsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/store_credits"  };
+  }
+
+  rpc CreateStoreCredit ( CreateStoreCreditRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/store_credits" body:"create_store_credit_params"  };
+  }
+
+  rpc ShowStoreCredit ( ShowStoreCreditRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/store_credits/{id}"  };
+  }
+
+  rpc DeleteStoreCredit ( DeleteStoreCreditRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/store_credits/{id}"  };
+  }
+
+  rpc UpdateStoreCredit ( UpdateStoreCreditRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/store_credits/{id}" body:"update_store_credit_params"  };
+  }
+
+  rpc TaxCategoriesList ( TaxCategoriesListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/tax_categories"  };
+  }
+
+  rpc CreateTaxCategory ( CreateTaxCategoryRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/tax_categories" body:"create_tax_category_params"  };
+  }
+
+  rpc ShowTaxCategory ( ShowTaxCategoryRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/tax_categories/{id}"  };
+  }
+
+  rpc DeleteTaxCategory ( DeleteTaxCategoryRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/tax_categories/{id}"  };
+  }
+
+  rpc UpdateTaxCategory ( UpdateTaxCategoryRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/tax_categories/{id}" body:"update_tax_category_params"  };
+  }
+
+  rpc TaxRatesList ( TaxRatesListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/tax_rates"  };
+  }
+
+  rpc CreateTaxRate ( CreateTaxRateRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/tax_rates" body:"create_tax_rate_params"  };
+  }
+
+  rpc ShowTaxRate ( ShowTaxRateRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/tax_rates/{id}"  };
+  }
+
+  rpc DeleteTaxRate ( DeleteTaxRateRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/tax_rates/{id}"  };
+  }
+
+  rpc UpdateTaxRate ( UpdateTaxRateRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/tax_rates/{id}" body:"update_tax_rate_params"  };
+  }
+
+  rpc TaxonomiesList ( TaxonomiesListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/taxonomies"  };
+  }
+
+  rpc CreateTaxonomy ( CreateTaxonomyRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/taxonomies" body:"create_taxonomy_params"  };
+  }
+
+  rpc ShowTaxonomy ( ShowTaxonomyRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/taxonomies/{id}"  };
+  }
+
+  rpc DeleteTaxonomy ( DeleteTaxonomyRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/taxonomies/{id}"  };
+  }
+
+  rpc UpdateTaxonomy ( UpdateTaxonomyRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/taxonomies/{id}" body:"update_taxonomy_params"  };
+  }
+
+  rpc TaxonsList ( TaxonsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/taxons"  };
+  }
+
+  rpc CreateTaxon ( CreateTaxonRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/taxons" body:"create_taxon_params"  };
+  }
+
+  rpc ShowTaxon ( ShowTaxonRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/taxons/{id}"  };
+  }
+
+  rpc DeleteTaxon ( DeleteTaxonRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/taxons/{id}"  };
+  }
+
+  rpc UpdateTaxon ( UpdateTaxonRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/taxons/{id}" body:"update_taxon_params"  };
+  }
+
+  rpc RepositionTaxon ( RepositionTaxonRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/taxons/{id}/reposition" body:"taxon_reposition"  };
+  }
+
+  rpc UsersList ( UsersListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/users"  };
+  }
+
+  rpc CreateUser ( CreateUserRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/users" body:"create_user_params"  };
+  }
+
+  rpc ShowUser ( ShowUserRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/users/{id}"  };
+  }
+
+  rpc DeleteUser ( DeleteUserRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/users/{id}"  };
+  }
+
+  rpc UpdateUser ( UpdateUserRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/users/{id}" body:"update_user_params"  };
+  }
+
+  rpc VariantsList ( VariantsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/variants"  };
+  }
+
+  rpc ShowVariant ( ShowVariantRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/variants/{id}"  };
+  }
+
+  rpc DeleteVariant ( DeleteVariantRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/variants/{id}"  };
+  }
+
+  rpc WebhookEventsList ( WebhookEventsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/webhooks/events"  };
+  }
+
+  rpc WebhookSubscribersList ( WebhookSubscribersListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/webhooks/subscribers"  };
+  }
+
+  rpc CreateWebhookSubscriber ( CreateWebhookSubscriberRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/webhooks/subscribers" body:"create_webhook_subscriber_params"  };
+  }
+
+  rpc ShowWebhookSubscriber ( ShowWebhookSubscriberRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/webhooks/subscribers/{id}"  };
+  }
+
+  rpc DeleteWebhookSubscriber ( DeleteWebhookSubscriberRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/webhooks/subscribers/{id}"  };
+  }
+
+  rpc UpdateWebhookSubscriber ( UpdateWebhookSubscriberRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/webhooks/subscribers/{id}" body:"update_webhook_subscriber_params"  };
+  }
+
+  rpc WishedItemsList ( WishedItemsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/wished_items"  };
+  }
+
+  rpc CreateWishedItem ( CreateWishedItemRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/wished_items" body:"create_wished_item_params"  };
+  }
+
+  rpc ShowWishedItem ( ShowWishedItemRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/wished_items/{id}"  };
+  }
+
+  rpc DeleteWishedItem ( DeleteWishedItemRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/wished_items/{id}"  };
+  }
+
+  rpc UpdateWishedItem ( UpdateWishedItemRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/wished_items/{id}" body:"update_wished_item_params"  };
+  }
+
+  rpc WishlistsList ( WishlistsListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/wishlists"  };
+  }
+
+  rpc CreateWishlist ( CreateWishlistRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/wishlists" body:"create_wishlist_params"  };
+  }
+
+  rpc ShowWishlist ( ShowWishlistRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/wishlists/{id}"  };
+  }
+
+  rpc DeleteWishlist ( DeleteWishlistRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/wishlists/{id}"  };
+  }
+
+  rpc UpdateWishlist ( UpdateWishlistRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/wishlists/{id}" body:"update_wishlist_params"  };
+  }
+
+  rpc ZonesList ( ZonesListRequest ) returns ( ResourcesList ) {
+    option (google.api.http) = { get:"/api/v2/platform/zones"  };
+  }
+
+  rpc CreateZone ( CreateZoneRequest ) returns ( Resource ) {
+    option (google.api.http) = { post:"/api/v2/platform/zones" body:"create_zone_params"  };
+  }
+
+  rpc ShowZone ( ShowZoneRequest ) returns ( Resource ) {
+    option (google.api.http) = { get:"/api/v2/platform/zones/{id}"  };
+  }
+
+  rpc DeleteZone ( DeleteZoneRequest ) returns ( Error ) {
+    option (google.api.http) = { delete:"/api/v2/platform/zones/{id}"  };
+  }
+
+  rpc UpdateZone ( UpdateZoneRequest ) returns ( Resource ) {
+    option (google.api.http) = { patch:"/api/v2/platform/zones/{id}" body:"update_zone_params"  };
+  }
+}
+
