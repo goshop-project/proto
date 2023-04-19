@@ -1,6 +1,7 @@
 syntax = "proto3";
 package auth.v1;
 
+import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "goshop.dev/proto/gen/auth";
@@ -13,3 +14,45 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
     version: "0.0.0",
   }
 };
+
+service AuthService {
+  rpc Login(LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/login";
+      body: "*";
+    };
+  }
+  rpc Me(MeRequest) returns (MeResponse) {
+    option (google.api.http) = {get: "/v1/auth/me"};
+  }
+  rpc Refresh(RefreshRequest) returns (RefreshResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/refresh";
+      body: "*";
+    };
+  }
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;
+}
+
+message MeRequest {}
+message MeResponse {
+  string id = 1;
+  string email = 2;
+  string username = 3;
+  bool is_admin = 4;
+}
+
+message RefreshRequest {
+  string token = 1;
+}
+message RefreshResponse {
+  string token = 1;
+}
