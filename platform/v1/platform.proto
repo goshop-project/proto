@@ -1,0 +1,15 @@
+syntax = "proto3";
+package platform.v1;
+
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "goshop.dev/proto/gen/platform";
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  host: "demo.goshop.dev",
+  schemes: HTTPS,
+  info: {
+    title: "Platform API",
+    description: "API for GoShop's Platform",
+    version: "0.0.0",
+  }
+};
