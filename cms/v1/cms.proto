@@ -1,6 +1,8 @@
 syntax = "proto3";
 package cms.v1;
 
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "goshop.dev/proto/gen/cms";
@@ -13,3 +15,78 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
     version: "0.0.0",
   }
 };
+
+message Page {
+  string id = 1;
+  // Title of the Page
+  string title = 2;
+  // Type of Page
+  PageType type = 3;
+  // Locale the page is written in
+  string locale = 4;
+  // Visible means it's public
+  bool visible = 5;
+  // Slug is a variant of the title for URLs
+  string slug = 6;
+
+  // Content of the page
+  optional string content = 8;
+
+  // MetaTitle is the title that appears on the title bar
+  optional string meta_title = 10;
+  // MetaDescription is used for SEO and displayed in search results
+  optional string meta_description = 11;
+
+  optional google.protobuf.Timestamp created_at = 20;
+  optional google.protobuf.Timestamp updated_at = 21;
+  optional google.protobuf.Timestamp deleted_at = 22;
+}
+
+enum PageType {
+  PAGE_TYPE_UNSPECIFIED = 0;
+  PAGE_TYPE_STANDARD = 1;
+  PAGE_TYPE_HOMEPAGE = 2;
+  PAGE_TYPE_FEATURE = 3;
+}
+
+service ContentService {
+  // ListPages lists the pages in the CMS
+  rpc ListPages(ListPagesRequest) returns (ListPagesResponse) {
+    option (google.api.http) = {get: "/v1/pages"};
+  }
+
+  rpc CreatePage(CreatePageRequest) returns (CreatePageResponse) {
+    option (google.api.http) = {
+      post: "/v1/pages";
+      body: "page";
+    };
+  }
+
+  rpc GetPage(GetPageRequest) returns (GetPageResponse) {
+    option (google.api.http) = {get: "/v1/pages/{id}"};
+  }
+}
+
+message ListPagesRequest {
+  string locale_eq = 1;
+  string title_cont = 2;
+  string type_eq = 3;
+  uint32 page = 10;
+  uint32 per_page = 11;
+}
+
+message ListPagesResponse {}
+
+message CreatePageRequest {
+  Page page = 1;
+}
+
+message CreatePageResponse {}
+
+message GetPageRequest {
+  uint32 id = 1;
+}
+
+message GetPageResponse {
+  Page page = 1;
+}

@@ -3,8 +3,174 @@
 
 openapi: 3.0.3
 info:
-    title: ""
+    title: ContentService API
     version: 0.0.1
-paths: {}
+paths:
+    /v1/pages:
+        get:
+            tags:
+                - ContentService
+            description: ListPages lists the pages in the CMS
+            operationId: ContentService_ListPages
+            parameters:
+                - name: localeEq
+                  in: query
+                  schema:
+                    type: string
+                - name: titleCont
+                  in: query
+                  schema:
+                    type: string
+                - name: typeEq
+                  in: query
+                  schema:
+                    type: string
+                - name: page
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+                - name: perPage
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ListPagesResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        post:
+            tags:
+                - ContentService
+            operationId: ContentService_CreatePage
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Page'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreatePageResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /v1/pages/{id}:
+        get:
+            tags:
+                - ContentService
+            operationId: ContentService_GetPage
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetPageResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
 components:
-    schemas: {}
+    schemas:
+        CreatePageResponse:
+            type: object
+            properties: {}
+        GetPageResponse:
+            type: object
+            properties:
+                page:
+                    $ref: '#/components/schemas/Page'
+        GoogleProtobufAny:
+            type: object
+            properties:
+                '@type':
+                    type: string
+                    description: The type of the serialized message.
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+        ListPagesResponse:
+            type: object
+            properties: {}
+        Page:
+            type: object
+            properties:
+                id:
+                    type: string
+                title:
+                    type: string
+                    description: Title of the Page
+                type:
+                    type: integer
+                    description: Type of Page
+                    format: enum
+                locale:
+                    type: string
+                    description: Locale the page is written in
+                visible:
+                    type: boolean
+                    description: Visible means it's public
+                slug:
+                    type: string
+                    description: Slug is a variant of the title for URLs
+                content:
+                    type: string
+                    description: Content of the page
+                metaTitle:
+                    type: string
+                    description: MetaTitle is the title that appears on the title bar
+                metaDescription:
+                    type: string
+                    description: MetaDescription is used for SEO and displayed in search results
+                createdAt:
+                    type: string
+                    format: date-time
+                updatedAt:
+                    type: string
+                    format: date-time
+                deletedAt:
+                    type: string
+                    format: date-time
+        Status:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
+                    format: int32
+                message:
+                    type: string
+                    description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
+                details:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/GoogleProtobufAny'
+                    description: A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+            description: 'The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).'
+tags:
+    - name: ContentService

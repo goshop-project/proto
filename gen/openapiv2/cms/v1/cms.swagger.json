@@ -5,6 +5,11 @@
     "description": "API for GoShop's Content Management System",
     "version": "0.0.0"
   },
+  "tags": [
+    {
+      "name": "ContentService"
+    }
+  ],
   "host": "demo.goshop.dev",
   "schemes": [
     "https"
@@ -15,7 +20,126 @@
   "produces": [
     "application/json"
   ],
-  "paths": {},
+  "paths": {
+    "/v1/pages": {
+      "get": {
+        "summary": "ListPages lists the pages in the CMS",
+        "operationId": "ContentService_ListPages",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListPagesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "localeEq",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "titleCont",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "typeEq",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ContentService"
+        ]
+      },
+      "post": {
+        "operationId": "ContentService_CreatePage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreatePageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1Page"
+            }
+          }
+        ],
+        "tags": [
+          "ContentService"
+        ]
+      }
+    },
+    "/v1/pages/{id}": {
+      "get": {
+        "operationId": "ContentService_GetPage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetPageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ContentService"
+        ]
+      }
+    }
+  },
   "definitions": {
     "protobufAny": {
       "type": "object",
@@ -44,6 +168,82 @@
           }
         }
       }
+    },
+    "v1CreatePageResponse": {
+      "type": "object"
+    },
+    "v1GetPageResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/v1Page"
+        }
+      }
+    },
+    "v1ListPagesResponse": {
+      "type": "object"
+    },
+    "v1Page": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string",
+          "title": "Title of the Page"
+        },
+        "type": {
+          "$ref": "#/definitions/v1PageType",
+          "title": "Type of Page"
+        },
+        "locale": {
+          "type": "string",
+          "title": "Locale the page is written in"
+        },
+        "visible": {
+          "type": "boolean",
+          "title": "Visible means it's public"
+        },
+        "slug": {
+          "type": "string",
+          "title": "Slug is a variant of the title for URLs"
+        },
+        "content": {
+          "type": "string",
+          "title": "Content of the page"
+        },
+        "metaTitle": {
+          "type": "string",
+          "title": "MetaTitle is the title that appears on the title bar"
+        },
+        "metaDescription": {
+          "type": "string",
+          "title": "MetaDescription is used for SEO and displayed in search results"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deletedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1PageType": {
+      "type": "string",
+      "enum": [
+        "PAGE_TYPE_UNSPECIFIED",
+        "PAGE_TYPE_STANDARD",
+        "PAGE_TYPE_HOMEPAGE",
+        "PAGE_TYPE_FEATURE"
+      ],
+      "default": "PAGE_TYPE_UNSPECIFIED"
     }
   }
 }
