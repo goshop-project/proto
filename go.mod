@@ -4,6 +4,7 @@ go 1.19
 
 require (
 	github.com/bufbuild/buf v1.17.0
+	github.com/google/gnostic v0.6.9
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.2
 	github.com/mgechev/revive v1.3.1
 	google.golang.org/grpc v1.54.0
@@ -25,6 +26,7 @@ require (
 	github.com/docker/docker-credential-helpers v0.7.0 // indirect
 	github.com/docker/go-connections v0.4.0 // indirect
 	github.com/docker/go-units v0.5.0 // indirect
+	github.com/envoyproxy/protoc-gen-validate v0.9.1 // indirect
 	github.com/fatih/color v1.15.0 // indirect
 	github.com/fatih/structtag v1.2.0 // indirect
 	github.com/felixge/fgprof v0.9.3 // indirect
@@ -42,6 +44,7 @@ require (
 	github.com/jdxcode/netrc v0.0.0-20221124155335-4616370d1a84 // indirect
 	github.com/klauspost/compress v1.16.5 // indirect
 	github.com/klauspost/pgzip v1.2.5 // indirect
+	github.com/kollalabs/protoc-gen-openapi v0.0.21 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.18 // indirect
