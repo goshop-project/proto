@@ -8,4 +8,5 @@ lint:
     - DEFAULT
 deps:
   - buf.build/googleapis/googleapis
+  - buf.build/gnostic/gnostic
   - buf.build/grpc-ecosystem/grpc-gateway
