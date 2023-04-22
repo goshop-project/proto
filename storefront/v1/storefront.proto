@@ -10,6 +10,6 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
     title: "Storefront API",
     description: "API for GoShop's Storefront",
-    version: "0.0.0",
+    version: "0.0.1",
   }
 };
