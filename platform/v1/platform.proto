@@ -3,7 +3,7 @@ package platform.v1;
 
 import "protoc-gen-openapiv2/options/annotations.proto";
 
-option go_package = "goshop.dev/proto/gen/platform";
+option go_package = "goshop.dev/proto/platform/v1;platform";
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   host: "demo.goshop.dev",
   schemes: HTTPS,
