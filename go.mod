@@ -1,4 +1,4 @@
-module goshop.dev/headless/proto
+module proto
 
 go 1.19
 

@@ -3,13 +3,13 @@ package storefront.v1;
 
 import "protoc-gen-openapiv2/options/annotations.proto";
 
-option go_package = "goshop.dev/proto/gen/storefront";
+option go_package = "goshop.dev/proto/storefront/v1;storefront";
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   host: "demo.goshop.dev",
   schemes: HTTPS,
   info: {
     title: "Storefront API",
     description: "API for GoShop's Storefront",
-    version: "0.0.0",
+    version: "0.0.1",
   }
 };

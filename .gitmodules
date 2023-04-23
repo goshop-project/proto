@@ -1,0 +1,3 @@
+[submodule "gen/go"]
+	path = gen/go
+	url = ../proto-go
